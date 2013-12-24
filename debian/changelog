@@ -1,3 +1,9 @@
+dbus-glib (0.98-1ubuntu1.1pexip1) pexip; urgency=low
+
+  * Prepare Pexip packaging
+
+ -- John-Mark Bell <jmb@pexip.com>  Tue, 24 Dec 2013 14:40:28 +0000
+
 dbus-glib (0.98-1ubuntu1.1) precise-security; urgency=low
 
   * SECURITY UPDATE: possible privilege escalation via source spoofing
