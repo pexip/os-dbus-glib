@@ -1,17 +1,42 @@
-dbus-glib (0.98-1ubuntu1.1) precise-security; urgency=low
+dbus-glib (0.102-1) unstable; urgency=low
 
-  * SECURITY UPDATE: possible privilege escalation via source spoofing
-    - debian/patches/CVE-2013-0292.patch: verify sender of NameOwnerChanged
-      signals in dbus/dbus-gproxy.c.
-    - CVE-2013-0292
+  * New upstream release
+    - update symbols file for new ABI
+  * Update dbus-daemon introspection data from dbus/1.8.0-1
+  * Bump debhelper compat level to 9
+    - use compilation options from dpkg-buildflags
+    - have compressed, multi-arch-safe debug symbols
+      - make the -dbg package Multi-Arch: same
+  * Redo debian/copyright to be machine-readable, and actually mention
+    the copyright holders
+  * Standards-Version: 3.9.5, no further changes required
 
- -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 22 Feb 2013 15:35:24 -0500
+ -- Simon McVittie <smcv@debian.org>  Wed, 12 Feb 2014 15:21:55 +0000
 
-dbus-glib (0.98-1ubuntu1) precise; urgency=low
+dbus-glib (0.100.2-1) unstable; urgency=low
 
-  * Fix build error with -Werror=format-security.
+  * New upstream release
+    - respin upstream tarball to fix the HTML documentation (Closes: #701623)
+    - no source changes
 
- -- Matthias Klose <doko@ubuntu.com>  Wed, 19 Oct 2011 14:58:57 +0200
+ -- Simon McVittie <smcv@debian.org>  Mon, 25 Feb 2013 12:58:58 +0000
+
+dbus-glib (0.100.1-1) unstable; urgency=high
+
+  * New upstream security release
+    - fixes insufficient checking leading to authentication bypass in
+      pam_fprintd (CVE-2013-0292)
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 15 Feb 2013 17:03:52 +0000
+
+dbus-glib (0.100-1) unstable; urgency=low
+
+  * Update dbus-daemon introspection (from dbus 1.6.2)
+  * New upstream version
+    - fixes the build with -Werror=format-security (patch from Ubuntu)
+  * Include /usr/share/dpkg/default.mk for recommended build flags
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 25 Jun 2012 18:25:27 +0100
 
 dbus-glib (0.98-1) unstable; urgency=low
 
