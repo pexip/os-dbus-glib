@@ -7,7 +7,7 @@
 include /usr/share/dpkg/default.mk
 
 %:
-	dh $@ --with autoreconf --parallel
+	dh $@
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
@@ -27,4 +27,4 @@ override_dh_makeshlibs:
 	dh_makeshlibs -V
 
 override_dh_strip:
-	dh_strip --dbg-package=libdbus-glib-1-2-dbg
+	dh_strip --ddeb-migration='libdbus-glib-1-2-dbg (<< 0.108-2~)'
