@@ -63,7 +63,12 @@ libdbus_gtool_la_SOURCES = $(DBUS_GLIB_INTERNALS) \
 	dbus-gparser.c				\
 	dbus-gparser.h
 
-libdbus_gtool_la_LIBADD = $(DBUS_LIBS) -lexpat
+libdbus_gtool_la_LIBADD = \
+	-lexpat \
+	$(DBUS_LIBS) \
+	$(DBUS_GLIB_LIBS) \
+	libdbus-glib-1.la \
+	$(NULL)
 
 bin_PROGRAMS=dbus-binding-tool
 
@@ -100,6 +105,15 @@ dbus_bash_completion_helper_LDADD=$(builddir)/libdbus-gtool.la -lexpat $(builddi
 
 
 EXTRA_DIST=dbus-gmarshal.list dbus-bash-completion.sh.in
+
+Android.mk: Makefile.am
+	androgenizer -:PROJECT dbus-glib -:SHARED libdbus-glib-1 -:TAGS eng debug \
+	 -:REL_TOP $(top_srcdir) -:ABS_TOP $(abs_top_srcdir) \
+	 -:SOURCES $(libdbus_glib_1_la_SOURCES) \
+	 -:CFLAGS $(DEFS) $(CFLAGS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CFLAGS) \
+	 -:CPPFLAGS $(CPPFLAGS) $(AM_CPPFLAGS) \
+	 -:LDFLAGS $(libdbus_glib_1_la_LIBADD) $(libdbus_glib_1_la_LDFLAGS) \
+	> $@
 
 if DBUS_BUILD_TESTS
 
