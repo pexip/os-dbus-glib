@@ -40,7 +40,7 @@
 G_GNUC_NORETURN static void
 oom (const gchar *explanation)
 {
-  g_error (explanation == NULL ? "Out of memory" : explanation);
+  g_error ("%s", explanation == NULL ? "Out of memory" : explanation);
   g_assert_not_reached ();
 }
 
@@ -1491,7 +1491,16 @@ gerror_domaincode_to_dbus_error_name (const DBusGObjectInfo *object_info,
 	  g_type_class_unref (klass);
 
 	  domain_str = info->default_iface;
-	  code_str = value->value_nick;
+	  if (value)
+            {
+              code_str = value->value_nick;
+            }
+          else
+            {
+              g_warning ("Error code %d out of range for GError domain %s",
+                         code, g_quark_to_string (domain));
+              code_str = NULL;
+            }
 	}
     }
 
@@ -1514,7 +1523,8 @@ gerror_domaincode_to_dbus_error_name (const DBusGObjectInfo *object_info,
           g_free (uscored);
         }
 
-      g_string_append_printf (dbus_error_name, "Code%d", code);
+      /* Map -1 to (unsigned) -1 to avoid "-", which is not valid */
+      g_string_append_printf (dbus_error_name, "Code%u", (unsigned) code);
     }
   else
     {
@@ -3264,6 +3274,22 @@ out:
   dbus_g_connection_unref (context->connection);
   dbus_g_message_unref (context->message);
   g_free (context);
+}
+
+/**
+ * dbus_g_method_invocation_get_g_connection:
+ * @context: the method context
+ *
+ * <!-- Returns: says it all -->
+ *
+ * Returns: (transfer none): the @DBusGConnection from which the method was called.
+ */
+DBusGConnection *
+dbus_g_method_invocation_get_g_connection (DBusGMethodInvocation *context)
+{
+  g_return_val_if_fail (context != NULL, NULL);
+
+  return context->connection;
 }
 
 const char *

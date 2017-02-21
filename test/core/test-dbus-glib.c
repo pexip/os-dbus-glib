@@ -1,3 +1,29 @@
+/* General tests for dbus-glib. Please make new tests into a standalone
+ * binary using GTest instead, where feasible.
+ *
+ * Copyright © 2006-2010 Red Hat, Inc.
+ * Copyright © 2006-2010 Collabora Ltd.
+ * Copyright © 2006-2011 Nokia Corporation
+ * Copyright © 2006 Steve Frécinaux
+ *
+ * Licensed under the Academic Free License version 2.1
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301  USA
+ */
+
 #include <config.h>
 
 /* -*- mode: C; c-file-style: "gnu" -*- */
@@ -11,6 +37,7 @@
 #include <glib.h>
 #include <glib-object.h>
 #include "my-object.h"
+#include "test/lib/util.h"
 
 GMainLoop *loop = NULL;
 
@@ -65,8 +92,11 @@ static void
 test_terminate_proxy1_destroyed_cb (DBusGProxy *proxy, gpointer user_data)
 {
    proxy_destroyed = TRUE;
+
   if (proxy_destroy_and_nameowner && !proxy_destroy_and_nameowner_complete && await_terminating_service == NULL)
     {
+      g_object_unref(test_terminate_proxy1);
+      test_terminate_proxy1 = NULL;
       g_object_unref(test_terminate_proxy2);
       test_terminate_proxy2 = NULL;
       g_source_remove (exit_timeout);
@@ -297,6 +327,8 @@ test_base_class_get_all (DBusGConnection *connection,
   GError *error = NULL;
   GHashTable *hash = NULL;
 
+  /* g_test_bug (19145); */
+
   g_assert (expected_string_value != NULL);
   g_assert (object_path != NULL);
 
@@ -385,6 +417,8 @@ test_subclass_get_all (DBusGConnection *connection,
   DBusGProxy *proxy;
   GError *error = NULL;
   GHashTable *hash = NULL;
+
+  /* g_test_bug (19145); */
 
   g_assert (object_path != NULL);
 
@@ -514,16 +548,11 @@ main (int argc, char **argv)
   loop = g_main_loop_new (NULL, FALSE);
 
   error = NULL;
-  connection = dbus_g_bus_get (DBUS_BUS_SESSION,
-                               &error);
+  connection = dbus_g_bus_get_private (DBUS_BUS_SESSION, NULL, &error);
+
   if (connection == NULL)
     lose_gerror ("Failed to open connection to bus", error);
 
-  /* should always get the same one */
-  g_assert (connection == dbus_g_bus_get (DBUS_BUS_SESSION, NULL));
-  g_assert (connection == dbus_g_bus_get (DBUS_BUS_SESSION, NULL));
-  g_assert (connection == dbus_g_bus_get (DBUS_BUS_SESSION, NULL));
-  
   /* Create a proxy object for the "bus driver" */
   
   driver = dbus_g_proxy_new_for_name (connection,
@@ -786,27 +815,6 @@ main (int argc, char **argv)
   g_print ("ThrowError failed (as expected) returned error: %s\n", error->message);
   g_clear_error (&error);
 
-  g_print ("Calling ThrowNotSupported\n");
-  if (dbus_g_proxy_call (proxy, "ThrowNotSupported", &error,
-			 G_TYPE_INVALID, G_TYPE_INVALID) != FALSE)
-    lose ("ThrowNotSupported call unexpectedly succeeded!");
-
-  if (error->domain != DBUS_GERROR || error->code != DBUS_GERROR_NOT_SUPPORTED)
-    lose ("ThrowNotSupported call returned unexpected error: %s #%u: %s %s",
-          g_quark_to_string (error->domain), error->code,
-          dbus_g_error_get_name (error), error->message);
-
-  g_print ("ThrowNotSupported correctly returned error: %s\n", error->message);
-  g_clear_error (&error);
-
-  g_print ("Calling ThrowUnregisteredError\n");
-  if (dbus_g_proxy_call (proxy, "ThrowUnregisteredError", &error,
-			 G_TYPE_INVALID, G_TYPE_INVALID) != FALSE)
-    lose ("ThrowError call unexpectedly succeeded!");
-
-  g_print ("ThrowUnregisteredError failed (as expected) returned error: %s\n", error->message);
-  g_clear_error (&error);
-
   g_print ("Calling IncrementRetvalError (for error)\n");
   error = NULL;
   v_UINT32_2 = 0;
@@ -880,30 +888,6 @@ main (int argc, char **argv)
     lose ("(wrapped) ThrowError call unexpectedly succeeded!");
 
   g_print ("(wrapped) ThrowError failed (as expected) returned error: %s\n", error->message);
-  g_clear_error (&error);
-  
-  g_print ("Calling (wrapped) throw_error_multi_word\n");
-  if (org_freedesktop_DBus_GLib_Tests_MyObject_throw_error_multi_word (proxy, &error) != FALSE)
-    lose ("(wrapped) ThrowErrorMultiWord call unexpectedly succeeded!");
-
-  g_print ("(wrapped) ThrowErrorMultiWord failed (as expected) returned error: %s\n", error->message);
-  g_clear_error (&error);
-
-  g_print ("Calling (wrapped) throw_error_under_score\n");
-  if (org_freedesktop_DBus_GLib_Tests_MyObject_throw_error_under_score (proxy, &error) != FALSE)
-    lose ("(wrapped) ThrowErrorUnderScore call unexpectedly succeeded!");
-
-  g_assert_error (error, DBUS_GERROR, DBUS_GERROR_REMOTE_EXCEPTION);
-  g_assert_cmpstr (dbus_g_error_get_name (error), ==,
-      "org.freedesktop.DBus.GLib.Tests.MyObject.Under_score");
-
-  g_print ("(wrapped) ThrowErrorUnderScore failed (as expected) returned error: %s\n", error->message);
-  g_clear_error (&error);
-
-  if (org_freedesktop_DBus_GLib_Tests_MyObject_async_throw_error (proxy, &error) != FALSE)
-    lose ("(wrapped) AsyncThrowError call unexpectedly succeeded!");
-
-  g_print ("(wrapped) AsyncThrowError failed (as expected) returned error: %s\n", error->message);
   g_clear_error (&error);
 
   g_print ("Calling (wrapped) uppercase\n");
@@ -1046,6 +1030,8 @@ main (int argc, char **argv)
       lose_gerror ("Failed to complete (wrapped) zero-length recursive1 call", error);
     if (arraylen != 0)
       lose ("(wrapped) zero-length recursive1 call returned invalid length %u", arraylen);
+
+    g_array_unref (array);
   }
 
   {
@@ -1072,6 +1058,8 @@ main (int argc, char **argv)
       lose_gerror ("Failed to complete (wrapped) recursive1 call", error);
     if (arraylen != 5)
       lose ("(wrapped) recursive1 call returned invalid length %u", arraylen);
+
+    g_array_unref (array);
   }
 
   {
@@ -1306,6 +1294,7 @@ main (int argc, char **argv)
       lose_gerror ("Failed to complete RecArrays call", error);
     g_free (g_ptr_array_index (in_array, 0));
     g_free (g_ptr_array_index (in_array, 1));
+    g_ptr_array_free (in_array, TRUE);
 
     g_assert (out_array);
     g_assert (out_array->len == 2);
@@ -1407,6 +1396,8 @@ main (int argc, char **argv)
       lose_gerror ("Failed to complete (wrapped) GetValue call", error);
     if (val != 3)
       lose ("(wrapped) GetValue returned invalid value %d", val);
+
+    g_object_unref (ret_proxy);
   }
 
   run_mainloop ();
@@ -1790,7 +1781,8 @@ main (int argc, char **argv)
     lose ("Didn't get proxy_destroyed");
   g_print ("Proxy destroyed successfully\n");
 
-  /* Don't need to unref, proxy was destroyed */
+  /* "destroy" does not mean last-unref! */
+  g_object_unref (proxy);
 
   run_mainloop ();
 
@@ -2041,7 +2033,8 @@ main (int argc, char **argv)
 
     if (!(found_introspectable && found_myobject && found_properties))
       lose ("Missing interface"); 
-    g_free (node);
+
+    node_info_unref (node);
   }
   g_free (v_STRING_2);
 
@@ -2382,11 +2375,20 @@ main (int argc, char **argv)
       lose_gerror ("Failed to complete (wrapped) DoNothing call", error);
     
     g_object_unref (G_OBJECT (proxy));
+
+    test_run_until_disconnected (privconn, NULL);
+    dbus_g_connection_unref (privconn);
   }
 
   g_object_unref (G_OBJECT (driver));
 
+  test_run_until_disconnected (connection, NULL);
+  dbus_g_connection_unref (connection);
+
   g_print ("Successfully completed %s\n", argv[0]);
+
+  dbus_shutdown ();
+  g_main_loop_unref (loop);
 
   return 0;
 }

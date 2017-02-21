@@ -5,9 +5,6 @@
 #include "my-object.h"
 #include "my-object-marshal.h"
 
-static gboolean my_object_throw_error_under_score (MyObject *obj,
-    GError **error);
-
 #include "test-service-glib-glue.h"
 
 void
@@ -50,6 +47,7 @@ my_object_finalize (GObject *object)
   MyObject *mobject = MY_OBJECT (object);
 
   g_free (mobject->this_is_a_string);
+  g_clear_error (&mobject->saved_error);
 
   (G_OBJECT_CLASS (my_object_parent_class)->finalize) (object);
 }
@@ -128,6 +126,8 @@ my_object_init (MyObject *obj)
 {
   obj->val = 0;
   obj->notouching = 42;
+  obj->saved_error = g_error_new_literal (MY_OBJECT_ERROR,
+      MY_OBJECT_ERROR_FOO, "this method always loses");
 }
 
 static void
@@ -291,47 +291,21 @@ my_object_increment_retval_error (MyObject *obj, gint32 x, GError **error)
   return x + 1;
 }
 
+void
+my_object_save_error (MyObject *obj,
+    GQuark domain,
+    gint code,
+    const gchar *message)
+{
+  g_clear_error (&obj->saved_error);
+  g_set_error_literal (&obj->saved_error, domain, code, message);
+}
+
 gboolean
 my_object_throw_error (MyObject *obj, GError **error)
 {
-  g_set_error (error,
-	       MY_OBJECT_ERROR,
-	       MY_OBJECT_ERROR_FOO,
-	       "%s",
-	       "this method always loses");    
-  return FALSE;
-}
-
-gboolean
-my_object_throw_not_supported (MyObject *obj, GError **error)
-{
-  g_set_error (error,
-	       DBUS_GERROR,
-	       DBUS_GERROR_NOT_SUPPORTED,
-	       "%s",
-	       "this method always loses");
-  return FALSE;
-}
-
-gboolean
-my_object_throw_error_multi_word (MyObject *obj, GError **error)
-{
-  g_set_error (error,
-	       MY_OBJECT_ERROR,
-	       MY_OBJECT_ERROR_MULTI_WORD,
-	       "%s",
-	       "this method's error has a hyphen");    
-  return FALSE;
-}
-
-static gboolean
-my_object_throw_error_under_score (MyObject *obj, GError **error)
-{
-  g_set_error (error,
-	       MY_OBJECT_ERROR,
-	       MY_OBJECT_ERROR_UNDER_SCORE,
-	       "%s",
-	       "this method's error has an underscore");
+  g_set_error_literal (error, obj->saved_error->domain,
+      obj->saved_error->code, obj->saved_error->message);
   return FALSE;
 }
 
@@ -340,6 +314,14 @@ my_object_throw_unregistered_error (MyObject *obj, GError **error)
 {
   /* Unregistered errors shouldn't cause a dbus abort.  See
    * https://bugzilla.redhat.com/show_bug.cgi?id=581794
+   *
+   * This is arguably invalid usage - a domain of 0 (which stringifies
+   * to NULL) is meaningless. (See GNOME#660731.)
+   *
+   * We can't just use my_object_save_error() and ThrowError() for
+   * this, because g_error_new() is stricter about the domain than
+   * g_error_new_valist(). Perhaps this method should be removed entirely,
+   * though.
    */
   g_set_error (error, 0, 0,
 	       "%s",
@@ -853,15 +835,16 @@ my_object_async_increment (MyObject *obj, gint32 x, DBusGMethodInvocation *conte
   g_idle_add ((GSourceFunc)do_async_increment, data);
 }
 
-static gboolean
-do_async_error (IncrementData *data)
-{
+typedef struct {
   GError *error;
-  error = g_error_new (MY_OBJECT_ERROR,
-		       MY_OBJECT_ERROR_FOO,
-		       "%s",
-		       "this method always loses");
-  dbus_g_method_return_error (data->context, error);
+  DBusGMethodInvocation *context;
+} ErrorData;
+
+static gboolean
+do_async_error (ErrorData *data)
+{
+  dbus_g_method_return_error (data->context, data->error);
+  g_error_free (data->error);
   g_free (data);
   return FALSE;
 }
@@ -869,15 +852,19 @@ do_async_error (IncrementData *data)
 void
 my_object_async_throw_error (MyObject *obj, DBusGMethodInvocation *context)
 {
-  IncrementData *data = g_new0(IncrementData, 1);
+  ErrorData *data = g_new0 (ErrorData, 1);
+
+  data->error = g_error_copy (obj->saved_error);
   data->context = context;
-  g_idle_add ((GSourceFunc)do_async_error,  data);
+  g_idle_add ((GSourceFunc) do_async_error,  data);
 }
 
-void
-my_object_unsafe_disable_legacy_property_access (MyObject *obj)
+gboolean
+my_object_unsafe_disable_legacy_property_access (MyObject *obj,
+    GError **error)
 {
   dbus_glib_global_set_disable_legacy_property_access ();
+  return TRUE;
 }
 
 extern GMainLoop *loop;

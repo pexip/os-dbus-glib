@@ -11,7 +11,9 @@ LDADD = \
 	$(DBUS_GLIB_THREADS_LIBS) \
 	$(DBUS_GLIB_LIBS) \
 	$(DBUS_LIBS) \
-	$(top_builddir)/dbus/libdbus-glib-1.la
+	$(top_builddir)/dbus/libdbus-glib-1.la \
+	$(top_builddir)/test/lib/libtest.la \
+	$(NULL)
 
 tool_ldadd = \
 	$(LDADD) \
@@ -22,11 +24,27 @@ tool_ldadd = \
 ## so if adding tests not to be run in make check, don't add them to 
 ## TESTS
 if DBUS_BUILD_TESTS
-TESTS_ENVIRONMENT=DBUS_TOP_BUILDDIR=$(ABSOLUTE_TOP_BUILDDIR)
+TESTS_ENVIRONMENT=DBUS_TOP_BUILDDIR=@abs_top_builddir@
 TESTS=run-test.sh run-peer-test.sh
 else
 TESTS=
 endif
+
+VALGRIND_ENV = G_DEBUG=gc-friendly G_SLICE=always-malloc
+VALGRIND = valgrind
+VALGRIND_ARGS = \
+	--gen-suppressions=all \
+	--leak-check=full \
+	--leak-resolution=high \
+	--num-callers=20 \
+	--suppressions=$(abs_top_srcdir)/tools/dbus-glib.supp \
+	--suppressions=$(abs_top_srcdir)/tools/dbus-glib-tests.supp \
+	--verbose \
+	$(NULL)
+
+check-valgrind: all
+	$(MAKE) check-TESTS \
+	DEBUG="env $(VALGRIND_ENV) $(VALGRIND) $(VALGRIND_ARGS)"
 
 EXTRA_DIST=run-test.sh run-peer-test.sh test-service-glib.xml my-object-marshal.list test-service-glib-subclass.xml
 
@@ -48,19 +66,34 @@ endif
 ## build even when not doing "make check"
 noinst_PROGRAMS = \
 	test-dbus-glib \
+	test-error-mapping \
 	test-service-glib \
 	$(THREAD_APPS) \
 	peer-server \
 	peer-client \
 	test-types \
 	test-30574 \
+	test-private \
+	test-peer-on-bus \
+	test-proxy-noc \
 	test-proxy-peer \
 	test-registrations \
 	test-variant-recursion \
-	test-gvariant
+	test-gvariant \
+	test-shared-bus \
+	$(NULL)
 
 test_30574_SOURCES = \
 	30574.c
+
+test_private_SOURCES = \
+	my-object.c \
+	my-object.h \
+	my-object-marshal.c \
+	private.c
+
+test_proxy_noc_SOURCES = \
+	proxy-noc.c
 
 test_proxy_peer_SOURCES = \
 	my-object-marshal.c \
@@ -83,6 +116,12 @@ test_dbus_glib_SOURCES=				\
 	test-dbus-glib.c
 
 test_dbus_glib_LDADD= $(tool_ldadd)
+
+test_error_mapping_SOURCES = \
+	my-object.c \
+	my-object.h \
+	my-object-marshal.c \
+	error-mapping.c
 
 test_variant_recursion_SOURCES=test-variant-recursion.c
 
@@ -132,6 +171,10 @@ test_types_SOURCES = \
 
 test_gvariant_SOURCES = \
 	test-gvariant.c
+
+test_peer_on_bus_SOURCES = peer-on-bus.c
+
+test_shared_bus_SOURCES = shared-bus.c
 
 CLEANFILES = \
 	$(BUILT_SOURCES) \

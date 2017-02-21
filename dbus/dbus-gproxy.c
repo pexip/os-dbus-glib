@@ -676,7 +676,7 @@ unassociate_proxies (gpointer key, gpointer val, gpointer user_data)
 
       manager = priv->manager;
 
-      if (!strcmp (priv->name, name))
+      if (priv->name != NULL && !strcmp (priv->name, name))
 	{
 	  if (!priv->for_owner)
 	    {
@@ -1139,7 +1139,8 @@ dbus_g_proxy_manager_unregister (DBusGProxyManager *manager,
       manager->proxy_lists = NULL;
     }
 
-  if (g_hash_table_size (manager->owner_match_rules) == 0)
+  if (manager->owner_match_rules != NULL &&
+      g_hash_table_size (manager->owner_match_rules) == 0)
     {
       g_hash_table_destroy (manager->owner_match_rules);
       manager->owner_match_rules = NULL;
@@ -1249,8 +1250,11 @@ dbus_g_proxy_manager_filter (DBusConnection    *connection,
       GSList *tmp;
       const char *sender;
 
+      sender = dbus_message_get_sender (message);
+
       /* First we handle NameOwnerChanged internally */
-      if (dbus_message_is_signal (message,
+      if (g_strcmp0 (sender, DBUS_SERVICE_DBUS) == 0 &&
+	  dbus_message_is_signal (message,
 				  DBUS_INTERFACE_DBUS,
 				  "NameOwnerChanged"))
 	{
@@ -1278,8 +1282,6 @@ dbus_g_proxy_manager_filter (DBusConnection    *connection,
 	      dbus_g_proxy_manager_replace_name_owner (manager, name, prev_owner, new_owner);
 	    }
 	}
-
-      sender = dbus_message_get_sender (message);
 
       /* dbus spec requires these, libdbus validates */
       g_assert (dbus_message_get_path (message) != NULL);
