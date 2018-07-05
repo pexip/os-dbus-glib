@@ -18,7 +18,7 @@ Standards-Version: 3.9.5
 Vcs-Git: git://anonscm.debian.org/pkg-utopia/dbus-glib.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/dbus-glib.git
 Homepage: http://www.freedesktop.org/wiki/Software/DBusBindings
-XS-Pexip-Upstream: http://ftp.debian.org/debian/ jessie
+XS-Pexip-Upstream: http://ftp.debian.org/debian/ stretch
 
 Package: libdbus-glib-1-dev
 Section: libdevel
