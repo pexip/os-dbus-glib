@@ -54,7 +54,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* VOID:STRING,BOXED (/home/smcv/src/fdo/dbus-glib/dbus/examples/statemachine/sm-marshal.list:1) */
+/* VOID:STRING,BOXED (/home/smcv/src/dbus-glib/dbus/examples/statemachine/sm-marshal.list:1) */
 extern void sm_marshal_VOID__STRING_BOXED (GClosure     *closure,
                                            GValue       *return_value,
                                            guint         n_param_values,
@@ -73,9 +73,9 @@ sm_marshal_VOID__STRING_BOXED (GClosure     *closure,
                                                    gpointer     arg_1,
                                                    gpointer     arg_2,
                                                    gpointer     data2);
-  register GMarshalFunc_VOID__STRING_BOXED callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  GMarshalFunc_VOID__STRING_BOXED callback;
+  GCClosure *cc = (GCClosure*) closure;
+  gpointer data1, data2;
 
   g_return_if_fail (n_param_values == 3);
 

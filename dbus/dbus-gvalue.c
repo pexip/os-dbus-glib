@@ -365,6 +365,9 @@ _dbus_g_value_types_init (void)
  * %DBUS_TYPE_G_OBJECT_PATH, but did not actually exist as a typedef.
  *
  * Since: 0.FIXME
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is a #GVariant (%G_TYPE_VARIANT) of type %G_VARIANT_TYPE_OBJECT_PATH.
  */
 
 /**
@@ -377,6 +380,9 @@ _dbus_g_value_types_init (void)
  * stored in a #GValue.
  *
  * Returns: a type derived from %G_TYPE_BOXED
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is a #GVariant (%G_TYPE_VARIANT) of type %G_VARIANT_TYPE_OBJECT_PATH.
  */
 GType
 dbus_g_object_path_get_g_type (void)
@@ -400,6 +406,9 @@ dbus_g_object_path_get_g_type (void)
  * %DBUS_TYPE_G_SIGNATURE, but did not actually exist as a typedef.
  *
  * Since: 0.FIXME
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is a #GVariant (%G_TYPE_VARIANT) of type %G_VARIANT_TYPE_SIGNATURE.
  */
 
 /**
@@ -412,6 +421,9 @@ dbus_g_object_path_get_g_type (void)
  * stored in a #GValue.
  *
  * Returns: a type derived from %G_TYPE_BOXED
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is a #GVariant (%G_TYPE_VARIANT) of type %G_VARIANT_TYPE_SIGNATURE.
  */
 GType
 dbus_g_signature_get_g_type (void)
@@ -647,17 +659,24 @@ demarshal_static_variant (DBusGValueMarshalCtx    *context,
   sig = dbus_message_iter_get_signature (&subiter);
 
   variant_type = _dbus_gtype_from_signature (sig, context->proxy != NULL);
-  if (variant_type != G_TYPE_INVALID)
+  if (variant_type == G_TYPE_INVALID)
     {
-      g_value_init (value, variant_type);
-
-      if (!_dbus_gvalue_demarshal (context, &subiter, value, error))
-	{
-	  dbus_free (sig);
-	  return FALSE;
-	}
+      /* It can happen if we received an unknown type such as
+       * DBUS_TYPE_UNIX_FD or DBUS_TYPE_MAYBE. */
+      g_set_error (error, DBUS_GERROR,
+                   DBUS_GERROR_INVALID_SIGNATURE,
+                   "Variant contains unknown signature \'%s\'", sig);
+      dbus_free (sig);
+      return FALSE;
     }
+
   dbus_free (sig);
+
+  g_value_init (value, variant_type);
+
+  if (!_dbus_gvalue_demarshal (context, &subiter, value, error))
+    return FALSE;
+
   return TRUE;
 }
 

@@ -1,3 +1,457 @@
+commit c4f335cbddf29f271896f491bbb7949ac0680ff5
+Author: Simon McVittie <smcv@debian.org>
+Date:   2016-01-14 08:38:50 +0000
+
+    manual test: move to test/core
+
+    The strange use of source from a sibling directory seems to be
+    breaking
+    distcheck:
+
+    Making distclean in manual
+    make[3]: Entering directory
+    '/.../dbus-glib-0.105/_build/sub/test/manual'
+    Makefile:409: ../core/.deps/my-object.Po: No such file or directory
+    make[3]: *** No rule to make target '../core/.deps/my-object.Po'.
+    Stop.
+
+ configure.ac                     |   1 -
+ test/Makefile.am                 |   4 +-
+ test/core/Makefile.am            |   9 ++
+ test/core/manual/invalid-usage.c | 320
+ +++++++++++++++++++++++++++++++++++++++
+ test/manual/Makefile.am          |  30 ----
+ test/manual/invalid-usage.c      | 320
+ ---------------------------------------
+ 6 files changed, 331 insertions(+), 353 deletions(-)
+
+commit f9b23a4d7f536b5d4c42c39d170bc561811cbe6f
+Author: Simon McVittie <smcv@debian.org>
+Date:   2016-01-14 08:34:36 +0000
+
+    test: stop generating marshallers
+
+    They haven't been needed since GLib 2.30. Until now, we were also
+    incorrectly distributing the generated marshallers in tarball
+    releases.
+
+ test/core/Makefile.am      | 29 +++++++++++------------------
+ test/core/my-object.c      | 19 ++-----------------
+ test/core/my-object.h      |  1 -
+ test/core/test-dbus-glib.c |  2 --
+ test/manual/Makefile.am    |  2 --
+ 5 files changed, 13 insertions(+), 40 deletions(-)
+
+commit 43a446bbd4e7c5726e87882b03185df37e97fe73
+Author: Simon McVittie <smcv@debian.org>
+Date:   2016-01-14 07:00:13 +0000
+
+    test: stop calling g_mem_profile(), no longer supported
+
+    This now raises a g_warning() which makes the test fail.
+
+ test/core/test-dbus-glib.c | 6 ------
+ 1 file changed, 6 deletions(-)
+
+commit 6211894d92d45271fa5e8c964521ca8ee2cef1ac
+Author: Simon McVittie <smcv@debian.org>
+Date:   2016-01-14 06:53:22 +0000
+
+    Enable subdir-objects Automake option to silence warnings
+
+    automake: warning: possible forward-incompatibility.
+    automake: At least a source file is in a subdirectory, but the
+    'subdir-objects'
+    automake: automake option hasn't been enabled. [etc.]
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ebda5f95126d6adc38c2511a65e330d472af4f60
+Author: Simon McVittie <smcv@debian.org>
+Date:   2016-01-14 06:52:30 +0000
+
+    Replace deprecated INCLUDES with AM_CPPFLAGS
+
+ dbus/Makefile.am                       | 4 ++--
+ dbus/examples/Makefile.am              | 2 +-
+ dbus/examples/statemachine/Makefile.am | 2 +-
+ test/Makefile.am                       | 2 +-
+ test/core/Makefile.am                  | 2 +-
+ test/interfaces/Makefile.am            | 2 +-
+ tools/Makefile.am                      | 9 ++++++++-
+ 7 files changed, 15 insertions(+), 8 deletions(-)
+
+commit be7177fafb94bc3db50843e739df4575d4dabac0
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2016-01-04 14:08:01 +0000
+
+    NEWS: mention GLib 2.47.2, credit Colin
+
+ NEWS | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit af8e9f140d50eaf46d89503d2e765699aa923252
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2016-01-04 14:05:30 +0000
+
+    NEWS
+
+ NEWS | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit 14d608cc0bd83ce5d5bdf469ec0e83a6afd97afd
+Author: Colin Watson <cjwatson@debian.org>
+Date:   2015-12-26 18:01:04 +0000
+
+    Stop using G_HAVE_INLINE
+
+    GLib removed this macro from its headers in
+    db2367e8782d7a39fc3e93d13f6a16f10cad04c2 (GLib 2.47.2).  It's
+    unnecessary here for the same reasons, and relying on it now causes an
+    unused-function warning from GCC.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=93513
+    Reviewed-by: Simon McVittie <simon.mcvittie@collabora.co.uk>
+
+ dbus/dbus-binding-tool-glib.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 94c6ec840575a11c485ebb3a652a4bc89917dcd0
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2015-02-09 16:26:16 +0000
+
+    0.105
+
+ NEWS         | 5 +++++
+ configure.ac | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+commit 3000eaff772abadc1dcd22742d7d80545bd7269f
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2015-02-09 15:58:57 +0000
+
+    0.104
+
+ NEWS         | 38 ++++++++++++++++++++++++++++++++++++--
+ configure.ac |  6 +++---
+ 2 files changed, 39 insertions(+), 5 deletions(-)
+
+commit 82ca3f62848b72061bf041df529bea58e53d55e7
+Author: Philip Withnall <philip.withnall@collabora.co.uk>
+Date:   2015-02-09 13:38:27 +0000
+
+    doc: Make the deprecation warning bigger
+
+    Make the deprecation warning in the documentation introduction bigger.
+    Add a copy of it to the front page of the documentation too, which is
+    what people see when they first find the documentation online.
+
+ doc/reference/dbus-glib-docs.sgml | 27 ++++++++++++++++++++-------
+ 1 file changed, 20 insertions(+), 7 deletions(-)
+
+commit 983ea5ae211dcac80007cc8ef2b3be0aad35ecb1
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2015-02-09 15:02:17 +0000
+
+    30574 test: squash some compiler warnings
+
+ test/core/30574.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 63d86aad0624cb9c861cb8aae53467893b47a497
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2015-02-09 14:49:06 +0000
+
+    Drop unused functions
+
+ dbus/dbus-gobject.c | 55
+ -----------------------------------------------------
+ 1 file changed, 55 deletions(-)
+
+commit b972d42d074335d2043fd0c2b4300825a22783b1
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2015-02-09 14:48:59 +0000
+
+    Use GLIB_VERSION_MAX_ALLOWED, GLIB_VERSION_MIN_REQUIRED
+
+ configure.ac | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit fa9065942e51cac4bf3927d7c38e350457ae085a
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2015-02-09 14:43:49 +0000
+
+    Stop calling g_thread_init or linking libgthread-2.0
+
+    Since GLib 2.32, which we now depend on, this is unnecessary.
+
+ configure.ac                   | 2 +-
+ test/core/peer-client.c        | 2 +-
+ test/core/peer-server.c        | 2 +-
+ test/core/test-profile.c       | 1 -
+ test/core/test-service-glib.c  | 2 +-
+ test/core/test-thread-client.c | 1 -
+ test/core/test-thread-server.c | 1 -
+ 7 files changed, 4 insertions(+), 7 deletions(-)
+
+commit b5528d7ff526d700aab5b9e11aed871180d4f81e
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-16 13:32:45 +0100
+
+    Require a modern libdbus and a modern GLib
+
+    This means we can assume that GLib and libdbus are thread-safe by
+    default.
+
+    Also explicitly document that the object-mapping layer of dbus-glib
+    is not thread-safe.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=64214
+    Reviewed-by: Colin Walters <walters@verbum.org>
+    [with review comments to be fixed in subsequent commit -smcv]
+
+ configure.ac          | 7 ++-----
+ dbus/dbus-gthread.c   | 9 ++++++---
+ test/core/Makefile.am | 6 ------
+ 3 files changed, 8 insertions(+), 14 deletions(-)
+
+commit c0d1ffc09b5b008fe9b3ee09330ad663927669af
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-16 13:36:28 +0100
+
+    Use g_cclosure_marshal_generic for all marshalling
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=64214
+    Reviewed-by: Colin Walters <walters@verbum.org>
+
+ dbus/dbus-gobject.c | 117
+ ++--------------------------------------------------
+ dbus/dbus-gobject.h |   6 ---
+ dbus/dbus-gproxy.c  |  18 ++------
+ 3 files changed, 6 insertions(+), 135 deletions(-)
+
+commit d3a4fb94e10bacb2c18e0b56456e565471898508
+Author: Mike Gorse <mgorse@suse.com>
+Date:   2012-08-31 13:24:19 -0500
+
+    Remove erroneous assert from connection_setup_add_timeout
+
+    When switching a connection from one main loop to another, timeouts
+    are
+    moved to the new connection, so connection_setup_add_timeout gets
+    called on
+    the new connection for all timeouts that were set on the old
+    connection.
+    This means that the timeout's data can, in fact, be non-NULL, and
+    it will be
+    freed / removed from the old connection as a side-effect of adding
+    it to the
+    new connection. A similar assert was removed from
+    dbus_connection_add_watch
+    a while ago as part of the original patch for this bug.
+
+    Also, clean up the regression test a bit, and test that a
+    DBusConnection
+    can be migrated when a pending call is present.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=30574
+    [resolve conflicts -smcv]
+    Reviewed-by: Simon McVittie <simon.mcvittie@collabora.co.uk>
+
+ dbus/dbus-gmain.c |  2 --
+ test/core/30574.c | 65
+ ++++++++++++++++++++++++++++++-------------------------
+ 2 files changed, 36 insertions(+), 31 deletions(-)
+
+commit 40ae208c3309cfa0be27ef458e6947433ff3841e
+Author: Jiří Klimeš <jklimes@redhat.com>
+Date:   2012-02-06 14:00:06 +0100
+
+    docs: fix a typo in dbus_g_type_get_struct() description
+
+    Signed-off-by: Jiří Klimeš <jklimes@redhat.com>
+    Reviewed-by: Simon McVittie <simon.mcvittie@collabora.co.uk>
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=45686
+
+ dbus/dbus-gtype-specialized.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b8d44600179172cbf72337f46f4bad58fbefaf8f
+Author: Jiří Klimeš <jklimes@redhat.com>
+Date:   2012-02-06 12:29:54 +0100
+
+    docs: fix a typo in dbus_g_type_struct_get()'s doc
+
+    Signed-off-by: Jiří Klimeš <jklimes@redhat.com>
+    Reviewed-by: Simon McVittie <simon.mcvittie@collabora.co.uk>
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=45686
+
+ dbus/dbus-gtype-specialized.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8f9eb639229410a127958424fe1687135be3a38d
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-16 13:31:15 +0100
+
+    Document the entire library as deprecated
+
+ dbus/dbus-glib.c                  |  40 ++++++++++++
+ dbus/dbus-gmain.c                 |  16 +++++
+ dbus/dbus-gobject.c               |  53 ++++++++++++++++
+ dbus/dbus-gproxy.c                |  70 +++++++++++++++++++++
+ dbus/dbus-gthread.c               |   3 +
+ dbus/dbus-gtype-specialized.c     | 127
+ ++++++++++++++++++++++++++++++++++++++
+ dbus/dbus-gvalue-parse-variant.c  |   2 +
+ dbus/dbus-gvalue.c                |  12 ++++
+ doc/reference/dbus-glib-docs.sgml |  53 +++-------------
+ 9 files changed, 332 insertions(+), 44 deletions(-)
+
+commit a868cfe62f36bd11f60b5e68a8af854f95cb4931
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-16 12:40:52 +0100
+
+    Use gtk-doc in no-tmpl mode, moving documentation into the source code
+
+    Part of a patch from Rafał Mużyło.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=58698
+
+ configure.ac                         |  2 +-
+ dbus/dbus-glib.c                     |  4 ++++
+ dbus/dbus-gobject.c                  |  4 +++-
+ dbus/dbus-gproxy.c                   | 13 +++++++++++++
+ dbus/dbus-gtype-specialized.c        |  1 +
+ doc/reference/dbus-glib-docs.sgml    |  4 ++++
+ doc/reference/dbus-glib-sections.txt |  3 ++-
+ 7 files changed, 28 insertions(+), 3 deletions(-)
+
+commit c67ec31532d678c893a6f29060db4a0e2d9f0770
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-16 12:39:49 +0100
+
+    Use AC_LANG_PROGRAM to check for socklen_t
+
+    Part of a patch from Rafał Mużyło.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=58698
+
+ configure.ac | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 6efaae028bed13d022020ecf728b7442e8fd737b
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-16 12:39:04 +0100
+
+    Replace deprecated AM_PROG_LIBTOOL with LT_INIT
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 019b5f844f4c7bf33759e1e98236b599a542ba6c
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-16 12:38:09 +0100
+
+    Use AC_LANG_PROGRAM in AC_COMPILE_IFELSE
+
+    Part of a patch from Rafał Mużyło.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=58698
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ffa9f9e5e0926cabbfac5cd661a02cfb43bcc952
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-16 12:35:51 +0100
+
+    configure.ac: modernize AC_OUTPUT
+
+    Part of a patch from Rafał Mużyło.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=58698
+
+ configure.ac | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 7678b6f8f43789a880147749bd4b6dc3454d4dec
+Author: Alban Crequy <alban.crequy@collabora.co.uk>
+Date:   2014-07-29 11:16:47 +0100
+
+    demarshal_static_variant: fail gracefully with unknown message types
+
+    Refuse to demarshal variants containing unknown types such as
+    DBUS_TYPE_UNIX_FD
+    or DBUS_TYPE_MAYBE.  Otherwise we will not be able to free them
+    automatically
+    with g_value_unset.
+
+    Symptoms:
+    > GLib-GObject-CRITICAL **: g_value_unset: assertion 'G_IS_VALUE
+    (value)' failed
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=80557
+    Reviewed-by: Simon McVittie <simon.mcvittie@collabora.co.uk>
+
+ dbus/dbus-gvalue.c | 23 +++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
+
+commit 7b81cf6445b0802c582dfca4a7e5afec5c9c389e
+Author: Alban Crequy <alban.crequy@collabora.co.uk>
+Date:   2014-07-28 17:32:16 +0100
+
+    _dbus_gtype_from_signature_iter: fail gracefully with unknown
+    message types
+
+    _dbus_gtype_from_signature_iter now returns G_TYPE_INVALID on
+    unknown message
+    types such as DBUS_TYPE_UNIX_FD or DBUS_TYPE_MAYBE.
+
+    Symptoms:
+    > arguments to dbus_signature_iter_recurse() were incorrect, assertion
+    > "dbus_type_is_container (dbus_signature_iter_get_current_type
+    (iter))" failed
+    > in file ../../dbus/dbus-signature.c line 213.
+    > This is normally a bug in some application using the D-Bus library.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=80557
+    Reviewed-by: Simon McVittie <simon.mcvittie@collabora.co.uk>
+
+ dbus/dbus-gsignature.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+commit 52e42240ed11a1aeb1e6b6d1c77497e620b36015
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-09-05 15:06:20 +0100
+
+    tests: only remove sources that have not already been removed
+
+    With modern GLib, misusing GSource provokes a critical warning, which
+    is made fatal by our test framework.
+
+    It is possible (indeed likely) that some or all of the
+    cancel_exit_timeout() calls just before re-adding the timeout are
+    redundant, but I didn't want to waste time on assessing that - easier
+    to just do it every time.
+
+    Bug: https://bugs.freedesktop.org/show_bug.cgi?id=83530
+    Signed-off-by: Simon McVittie <simon.mcvittie@collabora.co.uk>
+
+ test/core/test-dbus-glib.c | 54
+ +++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 41 insertions(+), 13 deletions(-)
+
+commit eb14381d59ac3fdf7bbd7b75705cbf133cada399
+Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date:   2014-02-12 15:36:38 +0000
+
+    nano version
+
+ NEWS         | 5 +++++
+ configure.ac | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
 commit 397e8297d433547c9bf4150ddd2b9e0b4c39628c
 Author: Simon McVittie <simon.mcvittie@collabora.co.uk>
 Date:   2014-02-12 13:39:09 +0000

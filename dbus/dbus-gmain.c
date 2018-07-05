@@ -344,8 +344,6 @@ connection_setup_add_timeout (ConnectionSetup *cs,
   if (!dbus_timeout_get_enabled (timeout))
     return;
   
-  g_assert (dbus_timeout_get_data (timeout) == NULL);
-
   handler = g_new0 (TimeoutHandler, 1);
   handler->cs = cs;
   handler->timeout = timeout;
@@ -527,6 +525,8 @@ connection_setup_new_from_old (GMainContext    *context,
  * time. If called once with context A and once with context B,
  * context B replaces context A as the context monitoring the
  * connection.
+ *
+ * Deprecated: New code should use GDBus instead.
  */
 void
 dbus_connection_setup_with_g_main (DBusConnection *connection,
@@ -604,6 +604,8 @@ dbus_connection_setup_with_g_main (DBusConnection *connection,
  * time. If called once with context A and once with context B,
  * context B replaces context A as the context monitoring the
  * connection.
+ *
+ * Deprecated: New code should use GDBus instead.
  */
 void
 dbus_server_setup_with_g_main (DBusServer   *server,
@@ -676,6 +678,9 @@ dbus_server_setup_with_g_main (DBusServer   *server,
  * dbus_connection_setup_with_g_main() on the result.)
  *
  * Returns: a DBusConnection
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is g_dbus_connection_new_for_address_sync().
  */
 DBusGConnection*
 dbus_g_connection_open (const gchar  *address,
@@ -719,6 +724,9 @@ dbus_g_connection_open (const gchar  *address,
  * dbus_connection_setup_with_g_main() on the result.)
  *
  * Returns: (transfer full): a #DBusGConnection
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is g_dbus_connection_new_for_address_sync().
  */
 DBusGConnection *
 dbus_g_connection_open_private (const gchar  *address,
@@ -759,6 +767,9 @@ dbus_g_connection_open_private (const gchar  *address,
  * dbus_connection_setup_with_g_main() on the result.)
  *
  * Returns: a DBusConnection
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is g_bus_get_sync().
  */
 DBusGConnection*
 dbus_g_bus_get (DBusBusType     type,
@@ -801,6 +812,9 @@ dbus_g_bus_get (DBusBusType     type,
  * of the former function for more information on private connections.
  *
  * Returns: a DBusConnection
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is g_bus_get_sync().
  */
 DBusGConnection*
 dbus_g_bus_get_private (DBusBusType     type,
