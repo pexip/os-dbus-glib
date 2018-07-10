@@ -1,3 +1,9 @@
+dbus-glib (0.108-2pexip1) pexip; urgency=medium
+
+  * Migrate to Stretch
+
+ -- John-Mark Bell <jmb@pexip.com>  Tue, 10 Jul 2018 00:52:00 +0000
+
 dbus-glib (0.108-2) unstable; urgency=medium
 
   * Remove libdbus-glib-1-2-dbg, rely on automatic dbgsym packages instead
