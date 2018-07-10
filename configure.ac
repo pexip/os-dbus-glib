@@ -1,12 +1,12 @@
 dnl -*- mode: m4 -*-
 AC_PREREQ(2.52)
 
-AC_INIT([dbus-glib], [0.102],
+AC_INIT([dbus-glib], [0.108],
   [https://bugs.freedesktop.org/enter_bug.cgi?product=dbus&component=GLib])
 
 AC_CANONICAL_HOST
 
-AM_INIT_AUTOMAKE([1.9])
+AM_INIT_AUTOMAKE([1.9 subdir-objects])
 
 AC_CONFIG_HEADERS(config.h)
 
@@ -25,16 +25,16 @@ m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 #
 
 ## increment if the interface has additions, changes, removals.
-LT_CURRENT=4
+LT_CURRENT=5
 
 ## increment any time the source changes; set to
 ##  0 if you increment CURRENT
-LT_REVISION=2
+LT_REVISION=3
 
 ## increment if any interfaces have been added; set to 0
 ## if any interfaces have been changed or removed. removal has
 ## precedence over adding, so set to 0 if both happened.
-LT_AGE=2
+LT_AGE=3
 
 AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
@@ -95,7 +95,7 @@ AC_DEFUN([AC_CC_TRY_FLAG], [
   ac_save_CFLAGS="$CFLAGS"
   CFLAGS="$CFLAGS $1"
 
-  AC_COMPILE_IFELSE([ ], [ac_cc_flag=yes], [ac_cc_flag=no])
+  AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[]])], [ac_cc_flag=yes], [ac_cc_flag=no])
   CFLAGS="$ac_save_CFLAGS"
 
   if test "x$ac_cc_flag" = "xyes"; then
@@ -208,7 +208,7 @@ else
   fi
 fi
 
-AM_PROG_LIBTOOL
+LT_INIT
 
 changequote(,)dnl
 # compress spaces in flags
@@ -228,14 +228,14 @@ AC_SEARCH_LIBS([socket], [socket])
 
 dnl check for socklen_t
 AC_MSG_CHECKING(whether socklen_t is defined)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
-],[
+]],[[
 socklen_t foo;
 foo = 1;
-],dbus_have_socklen_t=yes,dbus_have_socklen_t=no)
+]])],dbus_have_socklen_t=yes,dbus_have_socklen_t=no)
 AC_MSG_RESULT($dbus_have_socklen_t)
 
 if test "x$dbus_have_socklen_t" = "xyes"; then
@@ -259,15 +259,16 @@ XML_CFLAGS=
 
 #### Set up final flags
 
-PKG_CHECK_MODULES([DBUS], [dbus-1 >= 1.2.16])
+PKG_CHECK_MODULES([DBUS], [dbus-1 >= 1.8])
 AC_SUBST([DBUS_CFLAGS])
 AC_SUBST([DBUS_LIBS])
 
 # Glib detection
-PKG_CHECK_MODULES([DBUS_GLIB], [gobject-2.0 >= 2.26, gio-2.0 >= 2.26])
-PKG_CHECK_MODULES(DBUS_GLIB_THREADS, gthread-2.0 >= 2.6, have_glib_threads=yes, have_glib_threads=no)
-
-AM_CONDITIONAL(HAVE_GLIB_THREADS, test x$have_glib_threads = xyes)
+AC_DEFINE([GLIB_VERSION_MAX_ALLOWED], [GLIB_VERSION_2_32],
+  [Warn on use of APIs added after GLib 2.32])
+AC_DEFINE([GLIB_VERSION_MIN_REQUIRED], [GLIB_VERSION_2_32],
+  [Warn on use of APIs deprecated before GLib 2.32])
+PKG_CHECK_MODULES([DBUS_GLIB], [gobject-2.0 >= 2.32, gio-2.0 >= 2.32])
 
 GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
@@ -283,9 +284,9 @@ AC_SUBST(DBUS_GLIB_TOOL_CFLAGS)
 AC_SUBST(DBUS_GLIB_TOOL_LIBS)
 
 ### gtk-doc Documentation
-GTK_DOC_CHECK(1.4)
+GTK_DOC_CHECK([1.14], [--flavour no-tmpl])
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 m4/Makefile
 doc/Makefile
@@ -301,11 +302,11 @@ test/data/valid-service-files/debug-glib.service
 test/data/valid-service-files/debug-echo.service
 test/data/valid-service-files/interfaces-test.service
 test/lib/Makefile
-test/manual/Makefile
 tools/Makefile
 dbus-glib-1.pc
 dbus-glib-1-uninstalled.pc
 ])
+AC_OUTPUT
 
 dnl ==========================================================================
 echo "

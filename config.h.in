@@ -10,6 +10,12 @@
    config.h changing */
 #undef DBUS_GCOV_ENABLED
 
+/* Warn on use of APIs added after GLib 2.32 */
+#undef GLIB_VERSION_MAX_ALLOWED
+
+/* Warn on use of APIs deprecated before GLib 2.32 */
+#undef GLIB_VERSION_MIN_REQUIRED
+
 /* Disable GLib assertion macros */
 #undef G_DISABLE_ASSERT
 
@@ -52,8 +58,7 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR
 
 /* Name of package */

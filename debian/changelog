@@ -1,3 +1,43 @@
+dbus-glib (0.108-2) unstable; urgency=medium
+
+  * Remove libdbus-glib-1-2-dbg, rely on automatic dbgsym packages instead
+  * Bump debhelper compat level to 10
+    - do not explicitly do a parallel build, it is now the default
+    - do not explicitly run autoreconf, it is now the default
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 12 Jan 2017 14:38:27 +0000
+
+dbus-glib (0.108-1) unstable; urgency=medium
+
+  * New upstream release
+    - stop using dbus-launch to run tests (Closes: #835849)
+  * Switch Vcs-Git to https (see #810378)
+  * Standards-Version: 3.9.8 (no changes needed)
+  * debian/gbp.conf: use DEP-14 branch names
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 09 Sep 2016 08:54:14 +0100
+
+dbus-glib (0.106-1) unstable; urgency=medium
+
+  * New upstream release
+  * Mark as officially deprecated by changing section to oldlibs
+    (Closes: #780141), corresponding to an override change by the
+    ftp-masters (see #796808)
+  * Install missing man page for dbus-binding-tool
+  * Release to unstable
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 14 Jan 2016 09:17:41 +0000
+
+dbus-glib (0.104-1) experimental; urgency=medium
+
+  * New upstream release
+    - it is now specifically documented as deprecated
+  * Switch Vcs-Browser to cgit and https
+  * Standards-Version: 3.9.6, no further changes required
+  * debian/control: say it's deprecated
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 09 Feb 2015 16:05:50 +0000
+
 dbus-glib (0.102-1pexip1) pexip; urgency=low
 
   * Migrate to Jessie
