@@ -8,7 +8,7 @@
 <link rel="up" href="ch02.html" title="API Reference">
 <link rel="prev" href="dbus-glib-Specializable-GType-System.html" title="Specializable GType System">
 <link rel="next" href="ch03.html" title="Tools Reference">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -111,13 +111,13 @@
 <div class="refsect2">
 <a name="dbus-set-g-error"></a><h3>dbus_set_g_error ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-dbus_set_g_error (<em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **gerror</code></em>,
+dbus_set_g_error (<em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **gerror</code></em>,
                   <em class="parameter"><code><span class="type">DBusError</span> *derror</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_set_g_error</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. GDBus' error encoding
  is much simpler and more reliable, and the closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/gio-GDBusError.html#g-dbus-error-new-for-dbus-error"><code class="function">g_dbus_error_new_for_dbus_error()</code></a>.</p>
+ is <a href="../gio/gio-GDBusError.html#g-dbus-error-new-for-dbus-error"><code class="function">g_dbus_error_new_for_dbus_error()</code></a>.</p>
 </div>
 <p>Store the information from a DBus method error return into a
 GError.  For the normal case of an arbitrary remote process,
@@ -170,14 +170,14 @@ only has one string, we use a hack to encode both values:</p>
 <a name="dbus-connection-setup-with-g-main"></a><h3>dbus_connection_setup_with_g_main ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 dbus_connection_setup_with_g_main (<em class="parameter"><code><span class="type">DBusConnection</span> *connection</code></em>,
-                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> *context</code></em>);</pre>
+                                   <em class="parameter"><code><a href="../glib/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> *context</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_connection_setup_with_g_main</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead.</p>
 </div>
 <p>Sets the watch and timeout functions of a <span class="type">DBusConnection</span>
 to integrate the connection with the GLib main loop.
-Pass in <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the <a href="https://developer.gnome.org/glib/unstable/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> unless you're
+Pass in <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the <a href="../glib/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> unless you're
 doing something specialized.</p>
 <p>If called twice for the same context, does nothing the second
 time. If called once with context A and once with context B,
@@ -199,7 +199,7 @@ connection.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>context</p></td>
-<td class="parameter_description"><p>the <a href="https://developer.gnome.org/glib/unstable/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for default context</p></td>
+<td class="parameter_description"><p>the <a href="../glib/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for default context</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -244,14 +244,14 @@ refcount incremented.</p>
 <a name="dbus-server-setup-with-g-main"></a><h3>dbus_server_setup_with_g_main ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 dbus_server_setup_with_g_main (<em class="parameter"><code><span class="type">DBusServer</span> *server</code></em>,
-                               <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> *context</code></em>);</pre>
+                               <em class="parameter"><code><a href="../glib/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> *context</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_server_setup_with_g_main</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead.</p>
 </div>
 <p>Sets the watch and timeout functions of a <span class="type">DBusServer</span>
 to integrate the server with the GLib main loop.
-In most cases the context argument should be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
+In most cases the context argument should be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
 <p>If called twice for the same context, does nothing the second
 time. If called once with context A and once with context B,
 context B replaces context A as the context monitoring the
@@ -272,7 +272,7 @@ connection.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>context</p></td>
-<td class="parameter_description"><p>the <a href="https://developer.gnome.org/glib/unstable/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for default</p></td>
+<td class="parameter_description"><p>the <a href="../glib/glib-The-Main-Event-Loop.html#GMainContext"><span class="type">GMainContext</span></a> or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for default</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -290,7 +290,7 @@ connection.</p>
 <p><code class="literal">DBUS_TYPE_CONNECTION</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead.</p>
 </div>
-<p>Expands to a function call returning a boxed <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> representing a
+<p>Expands to a function call returning a boxed <a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> representing a
 <span class="type">DBusConnection</span> pointer from libdbus. Not to be confused with
 <a class="link" href="dbus-glib-DBusGConnection.html#DBUS-TYPE-G-CONNECTION:CAPS" title="DBUS_TYPE_G_CONNECTION"><code class="literal">DBUS_TYPE_G_CONNECTION</code></a>, which you should usually use instead.</p>
 <div class="refsect3">
@@ -307,7 +307,7 @@ connection.</p>
 <p><code class="literal">DBUS_TYPE_MESSAGE</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead.</p>
 </div>
-<p>Expands to a function call returning a boxed <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> representing a
+<p>Expands to a function call returning a boxed <a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> representing a
 <span class="type">DBusMessage</span> pointer from libdbus. Not to be confused with
 <a class="link" href="dbus-glib-DBusGMessage.html#DBUS-TYPE-G-MESSAGE:CAPS" title="DBUS_TYPE_G_MESSAGE"><code class="literal">DBUS_TYPE_G_MESSAGE</code></a>, which you should usually use instead.</p>
 <div class="refsect3">
@@ -318,6 +318,6 @@ connection.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.27</div>
 </body>
 </html>

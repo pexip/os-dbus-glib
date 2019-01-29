@@ -8,7 +8,7 @@
 <link rel="up" href="ch02.html" title="API Reference">
 <link rel="prev" href="dbus-glib-DBusGMessage.html" title="DBusGMessage">
 <link rel="next" href="dbus-glib-DBusGError.html" title="DBusGError">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,7 +45,7 @@
 <tbody>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="dbus-glib-DBusGMethod.html#dbus-g-method-get-sender" title="dbus_g_method_get_sender ()">dbus_g_method_get_sender</a> <span class="c_punctuation">()</span>
@@ -112,18 +112,18 @@
 </div>
 <div class="refsect1">
 <a name="dbus-glib-DBusGMethod.description"></a><h2>Description</h2>
-<p>These types are used to call methods on <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a> objects.</p>
+<p>These types are used to call methods on <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a> objects.</p>
 </div>
 <div class="refsect1">
 <a name="dbus-glib-DBusGMethod.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="dbus-g-method-get-sender"></a><h3>dbus_g_method_get_sender ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 dbus_g_method_get_sender (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGMethod.html#DBusGMethodInvocation" title="DBusGMethodInvocation"><span class="type">DBusGMethodInvocation</span></a> *context</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_method_get_sender</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusMethodInvocation.html#g-dbus-method-invocation-get-sender"><code class="function">g_dbus_method_invocation_get_sender()</code></a>.</p>
+ is <a href="../gio/GDBusMethodInvocation.html#g-dbus-method-invocation-get-sender"><code class="function">g_dbus_method_invocation_get_sender()</code></a>.</p>
 </div>
 <p>Get the sender of a message so we can send a
 "reply" later (i.e. send a message directly
@@ -158,7 +158,7 @@ dbus_g_method_get_reply (<em class="parameter"><code><a class="link" href="dbus-
 <div class="warning">
 <p><code class="literal">dbus_g_method_get_reply</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusMethodInvocation.html#g-dbus-method-invocation-return-value"><code class="function">g_dbus_method_invocation_return_value()</code></a>.</p>
+ is <a href="../gio/GDBusMethodInvocation.html#g-dbus-method-invocation-return-value"><code class="function">g_dbus_method_invocation_return_value()</code></a>.</p>
 </div>
 <p>Get the reply message to append reply values
 Used as a sidedoor when you can't generate dbus values
@@ -192,7 +192,7 @@ dbus_g_method_send_reply (<em class="parameter"><code><a class="link" href="dbus
 <div class="warning">
 <p><code class="literal">dbus_g_method_send_reply</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusMethodInvocation.html#g-dbus-method-invocation-return-value"><code class="function">g_dbus_method_invocation_return_value()</code></a>.</p>
+ is <a href="../gio/GDBusMethodInvocation.html#g-dbus-method-invocation-return-value"><code class="function">g_dbus_method_invocation_return_value()</code></a>.</p>
 </div>
 <p>Send a manually created reply message.</p>
 <p>Used as a sidedoor when you can't generate dbus values
@@ -229,7 +229,7 @@ dbus_g_method_return (<em class="parameter"><code><a class="link" href="dbus-gli
 <div class="warning">
 <p><code class="literal">dbus_g_method_return</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusMethodInvocation.html#g-dbus-method-invocation-return-value"><code class="function">g_dbus_method_invocation_return_value()</code></a>.</p>
+ is <a href="../gio/GDBusMethodInvocation.html#g-dbus-method-invocation-return-value"><code class="function">g_dbus_method_invocation_return_value()</code></a>.</p>
 </div>
 <p>Send a return message for a given method invocation, with arguments.
 This function also frees the sending context.</p>
@@ -262,11 +262,11 @@ and types given by its <a class="link" href="dbus-glib-DBus-GObject-related-func
 <a name="dbus-g-method-return-error"></a><h3>dbus_g_method_return_error ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 dbus_g_method_return_error (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGMethod.html#DBusGMethodInvocation" title="DBusGMethodInvocation"><span class="type">DBusGMethodInvocation</span></a> *context</code></em>,
-                            <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> *error</code></em>);</pre>
+                            <em class="parameter"><code>const <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> *error</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_method_return_error</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusMethodInvocation.html#g-dbus-method-invocation-return-gerror"><code class="function">g_dbus_method_invocation_return_gerror()</code></a>.</p>
+ is <a href="../gio/GDBusMethodInvocation.html#g-dbus-method-invocation-return-gerror"><code class="function">g_dbus_method_invocation_return_gerror()</code></a>.</p>
 </div>
 <p>Send a error message for a given method invocation.
 This function also frees the sending context.</p>
@@ -317,12 +317,12 @@ function pointer for a C method to be invoked.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="struct_member_name"><p><a href="https://developer.gnome.org/gobject/unstable/gobject-Closures.html#GCallback"><span class="type">GCallback</span></a> <em class="structfield"><code><a name="DBusGMethodInfo.function"></a>function</code></em>;</p></td>
+<td class="struct_member_name"><p><a href="../gobject/gobject-Closures.html#GCallback"><span class="type">GCallback</span></a> <em class="structfield"><code><a name="DBusGMethodInfo.function"></a>function</code></em>;</p></td>
 <td class="struct_member_description"><p>C method to invoke</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><a href="https://developer.gnome.org/gobject/unstable/gobject-Closures.html#GClosureMarshal"><span class="type">GClosureMarshal</span></a> <em class="structfield"><code><a name="DBusGMethodInfo.marshaller"></a>marshaller</code></em>;</p></td>
+<td class="struct_member_name"><p><a href="../gobject/gobject-Closures.html#GClosureMarshal"><span class="type">GClosureMarshal</span></a> <em class="structfield"><code><a name="DBusGMethodInfo.marshaller"></a>marshaller</code></em>;</p></td>
 <td class="struct_member_description"><p>Marshaller to invoke method </p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
@@ -342,7 +342,7 @@ function pointer for a C method to be invoked.</p>
 <div class="warning">
 <p><code class="literal">DBusGMethodInvocation</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest
- equivalent is <a href="https://developer.gnome.org/gio/unstable/GDBusMethodInvocation.html#GDBusMethodInvocation-struct"><span class="type">GDBusMethodInvocation</span></a>.</p>
+ equivalent is <a href="../gio/GDBusMethodInvocation.html#GDBusMethodInvocation-struct"><span class="type">GDBusMethodInvocation</span></a>.</p>
 </div>
 <p>The context of an asynchronous method call.  See <a class="link" href="dbus-glib-DBusGMethod.html#dbus-g-method-return" title="dbus_g_method_return ()"><code class="function">dbus_g_method_return()</code></a> and
 <a class="link" href="dbus-glib-DBusGMethod.html#dbus-g-method-return-error" title="dbus_g_method_return_error ()"><code class="function">dbus_g_method_return_error()</code></a>.</p>
@@ -354,6 +354,6 @@ function pointer for a C method to be invoked.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.27</div>
 </body>
 </html>

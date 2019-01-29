@@ -1,6 +1,6 @@
 /* Regression test utilities
  *
- * Copyright © 2009 Collabora Ltd. <http://www.collabora.co.uk/>
+ * Copyright © 2009-2018 Collabora Ltd. <http://www.collabora.co.uk/>
  * Copyright © 2009-2011 Nokia Corporation
  *
  * Licensed under the Academic Free License version 2.1
@@ -21,12 +21,26 @@
  * 02110-1301  USA
  */
 
-#ifndef DBUS_GLIB_TEST_UTIL_H
-
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-lowlevel.h>
-
-void test_run_until_disconnected (DBusGConnection *connection,
-                                  GMainContext *context);
-
+#ifdef HAVE_CONFIG_H
+#include <config.h>
 #endif
+
+#include "util.h"
+
+void
+test_run_until_disconnected (DBusConnection *connection,
+                             GMainContext *context)
+{
+  g_printerr ("Disconnecting... ");
+
+  dbus_connection_set_exit_on_disconnect (connection, FALSE);
+  dbus_connection_close (connection);
+
+  while (dbus_connection_get_is_connected (connection))
+    {
+      g_printerr (".");
+      g_main_context_iteration (context, TRUE);
+    }
+
+  g_printerr (" disconnected\n");
+}

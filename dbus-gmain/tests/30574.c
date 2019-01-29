@@ -1,11 +1,35 @@
+/*
+ * Copyright © 2010-2012 Mike Gorse
+ * Copyright © 2011-2018 Collabora Ltd.
+ *
+ * Licensed under the Academic Free License version 2.1
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ */
+
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <dbus/dbus.h>
 #include <glib.h>
-#include <dbus/dbus-glib-lowlevel.h>
-#include "test/lib/util.h"
+#include <dbus-gmain/dbus-gmain.h>
+#include "util.h"
 
 DBusConnection *bus;
 GMainContext *main_context;
@@ -22,7 +46,7 @@ set_reply (DBusPendingCall * pending, void *user_data)
   SpiReentrantCallClosure* closure = (SpiReentrantCallClosure *) user_data;
 
   closure->reply = dbus_pending_call_steal_reply (pending);
-  dbus_connection_setup_with_g_main (bus, NULL);
+  DBUS_GMAIN_FUNCTION_NAME (set_up_connection) (bus, NULL);
 
   g_main_loop_quit (closure->loop);
 }
@@ -35,17 +59,18 @@ send_and_allow_reentry (DBusConnection * bus, DBusMessage * message,
   SpiReentrantCallClosure closure;
 
   closure.loop = g_main_loop_new (main_context, FALSE);
-  dbus_connection_setup_with_g_main (bus, (switch_after_send ? NULL :
-                                                               main_context));
+  DBUS_GMAIN_FUNCTION_NAME (set_up_connection) (bus,
+                                                (switch_after_send ? NULL :
+                                                                     main_context));
 
   if (!dbus_connection_send_with_reply (bus, message, &pending, 3000))
     {
-  dbus_connection_setup_with_g_main (bus, NULL);
+      DBUS_GMAIN_FUNCTION_NAME (set_up_connection) (bus, NULL);
       return NULL;
     }
   dbus_pending_call_set_notify (pending, set_reply, (void *) &closure, NULL);
   if (switch_after_send)
-    dbus_connection_setup_with_g_main (bus, main_context);
+    DBUS_GMAIN_FUNCTION_NAME (set_up_connection) (bus, main_context);
   g_main_loop_run  (closure.loop);
 
   g_main_loop_unref (closure.loop);
@@ -99,13 +124,12 @@ main(int argc, const char *argv[])
     fprintf(stderr, "Couldn't connect to bus: %s\n", error.name);
     return 1;
   }
-  dbus_connection_setup_with_g_main (bus, NULL);
+  DBUS_GMAIN_FUNCTION_NAME (set_up_connection) (bus, NULL);
   send_test_message (FALSE);
   send_test_message (FALSE);
   send_test_message (TRUE);
 
-  test_run_until_disconnected (dbus_connection_get_g_connection (bus),
-                               NULL);
+  test_run_until_disconnected (bus, NULL);
   dbus_connection_unref (bus);
 
   dbus_shutdown ();
