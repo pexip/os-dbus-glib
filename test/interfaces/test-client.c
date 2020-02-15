@@ -13,7 +13,7 @@
 #include "test-dup-prop-a-bindings.h"
 #include "test-dup-prop-b-bindings.h"
 
-#include "test/lib/util.h"
+#include "dbus-gmain/tests/util.h"
 
 #define TEST_NAMESPACE "org.freedesktop.DBus.GLib.Test.Interfaces"
 #define TEST_OBJECT_PATH "/org/freedesktop/DBus/GLib/Test/Interfaces"
@@ -279,7 +279,7 @@ main (int    argc,
 
   g_object_unref (dp_proxy);
 
-  test_run_until_disconnected (connection, NULL);
+  test_run_until_disconnected (dbus_g_connection_get_connection (connection), NULL);
   dbus_g_connection_unref (connection);
 
   dbus_shutdown ();
