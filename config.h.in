@@ -10,7 +10,7 @@
    config.h changing */
 #undef DBUS_GCOV_ENABLED
 
-/* Warn on use of APIs added after GLib 2.32 */
+/* Warn on use of APIs added after GLib 2.40 */
 #undef GLIB_VERSION_MAX_ALLOWED
 
 /* Warn on use of APIs deprecated before GLib 2.32 */
@@ -87,3 +87,7 @@
 
 /* Version number of package */
 #undef VERSION
+
+
+#define DBUS_GMAIN_FUNCTION_NAME(name) _dbus_g_ ## name
+

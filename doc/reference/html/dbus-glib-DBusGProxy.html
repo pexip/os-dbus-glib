@@ -8,7 +8,7 @@
 <link rel="up" href="ch02.html" title="API Reference">
 <link rel="prev" href="dbus-glib-DBusGError.html" title="DBusGError">
 <link rel="next" href="dbus-glib-Specializable-GType-System.html" title="Specializable GType System">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -146,7 +146,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-call" title="dbus_g_proxy_call ()">dbus_g_proxy_call</a> <span class="c_punctuation">()</span>
@@ -154,7 +154,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-call-with-timeout" title="dbus_g_proxy_call_with_timeout ()">dbus_g_proxy_call_with_timeout</a> <span class="c_punctuation">()</span>
@@ -186,7 +186,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-end-call" title="dbus_g_proxy_end_call ()">dbus_g_proxy_end_call</a> <span class="c_punctuation">()</span>
@@ -237,7 +237,7 @@
 </div>
 <div class="refsect1">
 <a name="dbus-glib-DBusGProxy.description"></a><h2>Description</h2>
-<p>A <a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> is a <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a> representing a remote object in a D-Bus
+<p>A <a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> is a <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a> representing a remote object in a D-Bus
 service.</p>
 </div>
 <div class="refsect1">
@@ -251,7 +251,7 @@ service.</p>
 <div class="warning">
 <p><code class="literal">DBusGProxyCallNotify</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is the standard <a href="https://developer.gnome.org/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> mechanism.</p>
+ is the standard <a href="../gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> mechanism.</p>
 </div>
 <p>Called when a reply to the call represented by <em class="parameter"><code>call_id</code></em>
  arrives.
@@ -297,7 +297,7 @@ dbus_g_proxy_new_for_name (<em class="parameter"><code><a class="link" href="dbu
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_new_for_name</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-new-sync"><code class="function">g_dbus_proxy_new_sync()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-new-sync"><code class="function">g_dbus_proxy_new_sync()</code></a>.</p>
 </div>
 <p>Creates a new proxy for a remote interface exported by a connection
 on a message bus. Method calls and signal connections over this
@@ -360,11 +360,11 @@ dbus_g_proxy_new_for_name_owner (<em class="parameter"><code><a class="link" hre
                                  <em class="parameter"><code>const <span class="type">char</span> *name</code></em>,
                                  <em class="parameter"><code>const <span class="type">char</span> *path</code></em>,
                                  <em class="parameter"><code>const <span class="type">char</span> *iface</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                 <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_new_for_name_owner</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-new-sync"><code class="function">g_dbus_proxy_new_sync()</code></a> with the name owner's unique name
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-new-sync"><code class="function">g_dbus_proxy_new_sync()</code></a> with the name owner's unique name
  passed as <em class="parameter"><code>name</code></em>
 .</p>
 </div>
@@ -420,7 +420,7 @@ of that owner rather than the generic name.</p>
 </div>
 <div class="refsect3">
 <a name="dbus-g-proxy-new-for-name-owner.returns"></a><h4>Returns</h4>
-<p> new proxy object, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> on error</p>
+<p> new proxy object, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> on error</p>
 </div>
 </div>
 <hr>
@@ -433,7 +433,7 @@ dbus_g_proxy_new_from_proxy (<em class="parameter"><code><a class="link" href="d
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_new_from_proxy</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-new-sync"><code class="function">g_dbus_proxy_new_sync()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-new-sync"><code class="function">g_dbus_proxy_new_sync()</code></a>.</p>
 </div>
 <p>Creates a proxy using an existing proxy as a template, substituting
 the specified interface and path.  Either or both may be NULL.</p>
@@ -479,7 +479,7 @@ dbus_g_proxy_new_for_peer (<em class="parameter"><code><a class="link" href="dbu
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_new_for_peer</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-new-sync"><code class="function">g_dbus_proxy_new_sync()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-new-sync"><code class="function">g_dbus_proxy_new_sync()</code></a>.</p>
 </div>
 <p>Creates a proxy for an object in peer application (one
 we're directly connected to). That is, this function is
@@ -563,7 +563,7 @@ dbus_g_proxy_get_path (<em class="parameter"><code><a class="link" href="dbus-gl
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_get_path</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-get-object-path"><code class="function">g_dbus_proxy_get_object_path()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-get-object-path"><code class="function">g_dbus_proxy_get_object_path()</code></a>.</p>
 </div>
 <p>Gets the path this proxy is bound to</p>
 <p>It is an error to call this method on a proxy that has emitted
@@ -596,15 +596,15 @@ dbus_g_proxy_get_bus_name (<em class="parameter"><code><a class="link" href="dbu
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_get_bus_name</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-get-name"><code class="function">g_dbus_proxy_get_name()</code></a> or <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-get-name-owner"><code class="function">g_dbus_proxy_get_name_owner()</code></a>,
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-get-name"><code class="function">g_dbus_proxy_get_name()</code></a> or <a href="../gio/GDBusProxy.html#g-dbus-proxy-get-name-owner"><code class="function">g_dbus_proxy_get_name_owner()</code></a>,
  depending how the proxy was created.</p>
 </div>
-<p>Gets the bus name a proxy is bound to (may be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> in some cases).
+<p>Gets the bus name a proxy is bound to (may be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> in some cases).
 If you created the proxy with <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-new-for-name" title="dbus_g_proxy_new_for_name ()"><code class="function">dbus_g_proxy_new_for_name()</code></a>, then
 the name you passed to that will be returned.
 If you created it with <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-new-for-name-owner" title="dbus_g_proxy_new_for_name_owner ()"><code class="function">dbus_g_proxy_new_for_name_owner()</code></a>, then the
 unique connection name will be returned. If you created it
-with <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-new-for-peer" title="dbus_g_proxy_new_for_peer ()"><code class="function">dbus_g_proxy_new_for_peer()</code></a> then <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned.</p>
+with <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-new-for-peer" title="dbus_g_proxy_new_for_peer ()"><code class="function">dbus_g_proxy_new_for_peer()</code></a> then <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> will be returned.</p>
 <p>It is an error to call this method on a proxy that has emitted
 the <span class="type">“destroy”</span> signal.</p>
 <div class="refsect3">
@@ -635,9 +635,9 @@ dbus_g_proxy_get_interface (<em class="parameter"><code><a class="link" href="db
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_get_interface</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-get-interface-name"><code class="function">g_dbus_proxy_get_interface_name()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-get-interface-name"><code class="function">g_dbus_proxy_get_interface_name()</code></a>.</p>
 </div>
-<p>Gets the object interface proxy is bound to (may be <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> in some cases).</p>
+<p>Gets the object interface proxy is bound to (may be <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> in some cases).</p>
 <p>It is an error to call this method on a proxy that has emitted
 the <span class="type">“destroy”</span> signal.</p>
 <div class="refsect3">
@@ -666,7 +666,7 @@ the <span class="type">“destroy”</span> signal.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 dbus_g_proxy_add_signal (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                          <em class="parameter"><code>const <span class="type">char</span> *signal_name</code></em>,
-                         <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_type</code></em>,
+                         <em class="parameter"><code><a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_type</code></em>,
                          <em class="parameter"><code>...</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_add_signal</code> is deprecated and should not be used in newly-written code.</p>
@@ -702,12 +702,12 @@ the <span class="type">“destroy”</span> signal.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>first_type</p></td>
-<td class="parameter_description"><p>the first argument type, or <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if none</p></td>
+<td class="parameter_description"><p>the first argument type, or <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if none</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>...</p></td>
-<td class="parameter_description"><p>any subsequent argument types, followed by <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a></p></td>
+<td class="parameter_description"><p>any subsequent argument types, followed by <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -720,13 +720,13 @@ the <span class="type">“destroy”</span> signal.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 dbus_g_proxy_connect_signal (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                              <em class="parameter"><code>const <span class="type">char</span> *signal_name</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Closures.html#GCallback"><span class="type">GCallback</span></a> handler</code></em>,
+                             <em class="parameter"><code><a href="../gobject/gobject-Closures.html#GCallback"><span class="type">GCallback</span></a> handler</code></em>,
                              <em class="parameter"><code><span class="type">void</span> *data</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Closures.html#GClosureNotify"><span class="type">GClosureNotify</span></a> free_data_func</code></em>);</pre>
+                             <em class="parameter"><code><a href="../gobject/gobject-Closures.html#GClosureNotify"><span class="type">GClosureNotify</span></a> free_data_func</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_connect_signal</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusConnection.html#g-dbus-connection-signal-subscribe"><code class="function">g_dbus_connection_signal_subscribe()</code></a>.</p>
+ is <a href="../gio/GDBusConnection.html#g-dbus-connection-signal-subscribe"><code class="function">g_dbus_connection_signal_subscribe()</code></a>.</p>
 </div>
 <p>Connect a signal handler to a proxy for a remote interface.  When
 the remote interface emits the specified signal, the proxy will
@@ -777,12 +777,12 @@ the <span class="type">“destroy”</span> signal.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 dbus_g_proxy_disconnect_signal (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                                 <em class="parameter"><code>const <span class="type">char</span> *signal_name</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Closures.html#GCallback"><span class="type">GCallback</span></a> handler</code></em>,
+                                <em class="parameter"><code><a href="../gobject/gobject-Closures.html#GCallback"><span class="type">GCallback</span></a> handler</code></em>,
                                 <em class="parameter"><code><span class="type">void</span> *data</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_disconnect_signal</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusConnection.html#g-dbus-connection-signal-unsubscribe"><code class="function">g_dbus_connection_signal_unsubscribe()</code></a>.</p>
+ is <a href="../gio/GDBusConnection.html#g-dbus-connection-signal-unsubscribe"><code class="function">g_dbus_connection_signal_unsubscribe()</code></a>.</p>
 </div>
 <p>Disconnect all signal handlers from a proxy that match the given
 criteria.</p>
@@ -831,7 +831,7 @@ dbus_g_proxy_send (<em class="parameter"><code><a class="link" href="dbus-glib-D
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_send</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusConnection.html#g-dbus-connection-send-message"><code class="function">g_dbus_connection_send_message()</code></a>.</p>
+ is <a href="../gio/GDBusConnection.html#g-dbus-connection-send-message"><code class="function">g_dbus_connection_send_message()</code></a>.</p>
 </div>
 <p>Sends a message to the interface we're proxying for.  Does not
 block or wait for a reply. The message is only actually written out
@@ -867,7 +867,7 @@ the <span class="type">“destroy”</span> signal.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>client_serial</p></td>
-<td class="parameter_description"><p>return location for message's serial, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>return location for message's serial, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -877,16 +877,16 @@ the <span class="type">“destroy”</span> signal.</p>
 <hr>
 <div class="refsect2">
 <a name="dbus-g-proxy-call"></a><h3>dbus_g_proxy_call ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 dbus_g_proxy_call (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                    <em class="parameter"><code>const <span class="type">char</span> *method</code></em>,
-                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>,
-                   <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
+                   <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>,
+                   <em class="parameter"><code><a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
                    <em class="parameter"><code>...</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_call</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-call-sync"><code class="function">g_dbus_proxy_call_sync()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-call-sync"><code class="function">g_dbus_proxy_call_sync()</code></a>.</p>
 </div>
 <p>Function for synchronously invoking a method and receiving reply
 values.  This function is equivalent to dbus_g_proxy_begin_call
@@ -922,14 +922,14 @@ the <span class="type">“destroy”</span> signal.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>first_arg_type</p></td>
-<td class="parameter_description"><p>type of first "in" argument, or <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if none</p></td>
+<td class="parameter_description"><p>type of first "in" argument, or <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if none</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>...</p></td>
 <td class="parameter_description"><p>value of first "in" argument, any further type/value pairs,
-<a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a>, type/location pairs for "out" arguments,
-and <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> again</p></td>
+<a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a>, type/location pairs for "out" arguments,
+and <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> again</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -937,23 +937,23 @@ and <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Informati
 </div>
 <div class="refsect3">
 <a name="dbus-g-proxy-call.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the method succeeds, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if it fails</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the method succeeds, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if it fails</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="dbus-g-proxy-call-with-timeout"></a><h3>dbus_g_proxy_call_with_timeout ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 dbus_g_proxy_call_with_timeout (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                                 <em class="parameter"><code>const <span class="type">char</span> *method</code></em>,
                                 <em class="parameter"><code><span class="type">int</span> timeout</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>,
+                                <em class="parameter"><code><a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
                                 <em class="parameter"><code>...</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_call_with_timeout</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-call-sync"><code class="function">g_dbus_proxy_call_sync()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-call-sync"><code class="function">g_dbus_proxy_call_sync()</code></a>.</p>
 </div>
 <p>Function for synchronously invoking a method and receiving reply
 values.  This function is equivalent to dbus_g_proxy_begin_call
@@ -1007,7 +1007,7 @@ the <span class="type">“destroy”</span> signal.</p>
 </div>
 <div class="refsect3">
 <a name="dbus-g-proxy-call-with-timeout.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the method succeeds, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if it fails</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the method succeeds, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if it fails</p>
 </div>
 </div>
 <hr>
@@ -1016,13 +1016,13 @@ the <span class="type">“destroy”</span> signal.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 dbus_g_proxy_call_no_reply (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                             <em class="parameter"><code>const <span class="type">char</span> *method</code></em>,
-                            <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
+                            <em class="parameter"><code><a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
                             <em class="parameter"><code>...</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_call_no_reply</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-call"><code class="function">g_dbus_proxy_call()</code></a> with <em class="parameter"><code>callback</code></em>
- = <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-call"><code class="function">g_dbus_proxy_call()</code></a> with <em class="parameter"><code>callback</code></em>
+ = <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
 </div>
 <p>Sends a method call message as with <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-begin-call" title="dbus_g_proxy_begin_call ()"><code class="function">dbus_g_proxy_begin_call()</code></a>, but
 does not ask for a reply or allow you to receive one.</p>
@@ -1051,14 +1051,14 @@ since you should be able to do a call with large arguments.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>first_arg_type</p></td>
-<td class="parameter_description"><p>type of the first argument, or <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> to call
+<td class="parameter_description"><p>type of the first argument, or <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> to call
 the method without arguments</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>...</p></td>
 <td class="parameter_description"><p>the first argument and any remaining type/argument pairs, followed by
-<a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> to terminate the list</p></td>
+<a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> to terminate the list</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1072,14 +1072,14 @@ the method without arguments</p></td>
 dbus_g_proxy_begin_call (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                          <em class="parameter"><code>const <span class="type">char</span> *method</code></em>,
                          <em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxyCallNotify" title="DBusGProxyCallNotify ()"><span class="type">DBusGProxyCallNotify</span></a> notify</code></em>,
-                         <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
-                         <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy</code></em>,
-                         <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
+                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                         <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy</code></em>,
+                         <em class="parameter"><code><a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
                          <em class="parameter"><code>...</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_begin_call</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-call"><code class="function">g_dbus_proxy_call()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-call"><code class="function">g_dbus_proxy_call()</code></a>.</p>
 </div>
 <p>Asynchronously invokes a method on a remote interface. The method
 call will not be sent over the wire until the application returns
@@ -1128,14 +1128,14 @@ since you should be able to do a call with large arguments.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>first_arg_type</p></td>
-<td class="parameter_description"><p>type of the first argument, or <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if there
+<td class="parameter_description"><p>type of the first argument, or <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if there
 are no arguments</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>...</p></td>
 <td class="parameter_description"><p>first argument, followed by any further type/value pairs, followed
-by <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a></p></td>
+by <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1153,15 +1153,15 @@ by <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Informatio
 dbus_g_proxy_begin_call_with_timeout (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                                       <em class="parameter"><code>const <span class="type">char</span> *method</code></em>,
                                       <em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxyCallNotify" title="DBusGProxyCallNotify ()"><span class="type">DBusGProxyCallNotify</span></a> notify</code></em>,
-                                      <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
-                                      <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy</code></em>,
+                                      <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>,
+                                      <em class="parameter"><code><a href="../glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> destroy</code></em>,
                                       <em class="parameter"><code><span class="type">int</span> timeout</code></em>,
-                                      <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
+                                      <em class="parameter"><code><a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
                                       <em class="parameter"><code>...</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_begin_call_with_timeout</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-call"><code class="function">g_dbus_proxy_call()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-call"><code class="function">g_dbus_proxy_call()</code></a>.</p>
 </div>
 <p>Asynchronously invokes a method on a remote interface. The method
 call will not be sent over the wire until the application returns
@@ -1215,14 +1215,14 @@ since you should be able to do a call with large arguments.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>first_arg_type</p></td>
-<td class="parameter_description"><p>type of the first argument, or <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if there
+<td class="parameter_description"><p>type of the first argument, or <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if there
 are no arguments</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>...</p></td>
 <td class="parameter_description"><p>first argument, followed by any further type/value pairs, followed
-by <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a></p></td>
+by <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1236,16 +1236,16 @@ by <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Informatio
 <hr>
 <div class="refsect2">
 <a name="dbus-g-proxy-end-call"></a><h3>dbus_g_proxy_end_call ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 dbus_g_proxy_end_call (<em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxy" title="struct DBusGProxy"><span class="type">DBusGProxy</span></a> *proxy</code></em>,
                        <em class="parameter"><code><a class="link" href="dbus-glib-DBusGProxy.html#DBusGProxyCall" title="DBusGProxyCall"><span class="type">DBusGProxyCall</span></a> *call</code></em>,
-                       <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>,
-                       <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
+                       <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>,
+                       <em class="parameter"><code><a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> first_arg_type</code></em>,
                        <em class="parameter"><code>...</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_end_call</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#g-dbus-proxy-call-finish"><code class="function">g_dbus_proxy_call_finish()</code></a>.</p>
+ is <a href="../gio/GDBusProxy.html#g-dbus-proxy-call-finish"><code class="function">g_dbus_proxy_call_finish()</code></a>.</p>
 </div>
 <p>Collects the results of a method call. The method call was normally
 initiated with <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-end-call" title="dbus_g_proxy_end_call ()"><code class="function">dbus_g_proxy_end_call()</code></a>. You may use this function
@@ -1254,7 +1254,7 @@ case this function will block if the results haven't yet been
 received.</p>
 <p>All D-Bus method calls can fail with a remote error. If this occurs,
 the <em class="parameter"><code>error</code></em>
- will be set and this function will return <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>.</p>
+ will be set and this function will return <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>.</p>
 <p>Otherwise, the "out" parameters and return value of the
 method are stored in the provided varargs list.
 The list should be terminated with G_TYPE_INVALID.</p>
@@ -1284,14 +1284,14 @@ The list should be terminated with G_TYPE_INVALID.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>first_arg_type</p></td>
-<td class="parameter_description"><p>type of first "out" argument, or <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if
+<td class="parameter_description"><p>type of first "out" argument, or <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a> if
 there are no "out" arguments</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>...</p></td>
 <td class="parameter_description"><p>return location for first "out" argument, followed by any further
-type/location pairs, followed by <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a></p></td>
+type/location pairs, followed by <a href="../gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"><code class="literal">G_TYPE_INVALID</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1299,7 +1299,7 @@ type/location pairs, followed by <a href="https://developer.gnome.org/gobject/un
 </div>
 <div class="refsect3">
 <a name="dbus-g-proxy-end-call.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> on success</p>
 </div>
 </div>
 <hr>
@@ -1311,7 +1311,7 @@ dbus_g_proxy_cancel_call (<em class="parameter"><code><a class="link" href="dbus
 <div class="warning">
 <p><code class="literal">dbus_g_proxy_cancel_call</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>.</p>
+ is <a href="../gio/GCancellable.html#g-cancellable-cancel"><code class="function">g_cancellable_cancel()</code></a>.</p>
 </div>
 <p>Cancels a pending method call. The method call was normally
 initiated with <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-begin-call" title="dbus_g_proxy_begin_call ()"><code class="function">dbus_g_proxy_begin_call()</code></a>.  This function
@@ -1399,9 +1399,9 @@ the <span class="type">“destroy”</span> signal.</p>
 <div class="warning">
 <p><code class="literal">DBusGProxy</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/GDBusProxy.html#GDBusProxy-struct"><span class="type">GDBusProxy</span></a>.</p>
+ is <a href="../gio/GDBusProxy.html#GDBusProxy-struct"><span class="type">GDBusProxy</span></a>.</p>
 </div>
-<p>A <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a> representing a remote object in a D-Bus service.</p>
+<p>A <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a> representing a remote object in a D-Bus service.</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1410,7 +1410,7 @@ the <span class="type">“destroy”</span> signal.</p>
 <div class="warning">
 <p><code class="literal">DBusGProxyCall</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. There is no direct
- equivalent in GDBus, but the standard <a href="https://developer.gnome.org/gio/unstable/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> mechanism is
+ equivalent in GDBus, but the standard <a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> mechanism is
  analogous.</p>
 </div>
 <p>An opaque pointer representing an asynchronous call in progress.</p>
@@ -1422,6 +1422,6 @@ the <span class="type">“destroy”</span> signal.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.27</div>
 </body>
 </html>

@@ -1,17 +1,17 @@
-SUBDIRS = lib . core interfaces
-DIST_SUBDIRS = lib core interfaces
+SUBDIRS = . core interfaces
+DIST_SUBDIRS = core interfaces
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	-I$(top_builddir)/dbus			\
 	$(DBUS_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS) \
+	$(GLIB_CFLAGS) \
 	$(NULL)
 
 LDADD = \
 	$(top_builddir)/dbus/libdbus-glib-1.la \
-	$(DBUS_GLIB_LIBS) \
+	$(GLIB_LIBS) \
 	$(DBUS_LIBS) \
 	$(NULL)
 

@@ -8,7 +8,7 @@
 <link rel="up" href="ch02.html" title="API Reference">
 <link rel="prev" href="dbus-glib-DBusGMethod.html" title="DBusGMethod">
 <link rel="next" href="dbus-glib-DBusGProxy.html" title="DBusGProxy">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -45,7 +45,7 @@
 <tbody>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="dbus-glib-DBusGError.html#dbus-g-error-has-name" title="dbus_g_error_has_name ()">dbus_g_error_has_name</a> <span class="c_punctuation">()</span>
@@ -95,24 +95,24 @@
 </div>
 <div class="refsect1">
 <a name="dbus-glib-DBusGError.description"></a><h2>Description</h2>
-<p><a class="link" href="dbus-glib-DBusGError.html#DBusGError" title="enum DBusGError"><span class="type">DBusGError</span></a> is the <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> used by DBus.</p>
+<p><a class="link" href="dbus-glib-DBusGError.html#DBusGError" title="enum DBusGError"><span class="type">DBusGError</span></a> is the <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> used by DBus.</p>
 </div>
 <div class="refsect1">
 <a name="dbus-glib-DBusGError.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="dbus-g-error-has-name"></a><h3>dbus_g_error_has_name ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
-dbus_g_error_has_name (<em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> *error</code></em>,
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+dbus_g_error_has_name (<em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> *error</code></em>,
                        <em class="parameter"><code>const <span class="type">char</span> *name</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_error_has_name</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/gio-GDBusError.html#g-dbus-error-get-remote-error"><code class="function">g_dbus_error_get_remote_error()</code></a>.</p>
+ is <a href="../gio/gio-GDBusError.html#g-dbus-error-get-remote-error"><code class="function">g_dbus_error_get_remote_error()</code></a>.</p>
 </div>
 <p>Determine whether D-BUS error name for a remote exception matches
 the given name.  This function is intended to be invoked on a
-<a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> returned from an invocation of a remote method, e.g. via
-<a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-end-call" title="dbus_g_proxy_end_call ()"><code class="function">dbus_g_proxy_end_call()</code></a>.  It will silently return <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> for errors
+<a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> returned from an invocation of a remote method, e.g. via
+<a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-end-call" title="dbus_g_proxy_end_call ()"><code class="function">dbus_g_proxy_end_call()</code></a>.  It will silently return <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> for errors
 which are not remote D-BUS exceptions (i.e. with a domain other
 than <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR:CAPS" title="DBUS_GERROR"><code class="literal">DBUS_GERROR</code></a> or a code other than
 <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR-REMOTE-EXCEPTION:CAPS"><code class="literal">DBUS_GERROR_REMOTE_EXCEPTION</code></a>).</p>
@@ -140,20 +140,20 @@ than <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR:CAPS" title="DB
 </div>
 <div class="refsect3">
 <a name="dbus-g-error-has-name.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if and only if the remote error has the given name</p>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if and only if the remote error has the given name</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="dbus-g-error-get-name"></a><h3>dbus_g_error_get_name ()</h3>
 <pre class="programlisting">const <span class="returnvalue">char</span> *
-dbus_g_error_get_name (<em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> *error</code></em>);</pre>
+dbus_g_error_get_name (<em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> *error</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_error_get_name</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/gio-GDBusError.html#g-dbus-error-get-remote-error"><code class="function">g_dbus_error_get_remote_error()</code></a>.</p>
+ is <a href="../gio/gio-GDBusError.html#g-dbus-error-get-remote-error"><code class="function">g_dbus_error_get_remote_error()</code></a>.</p>
 </div>
-<p>This function may only be invoked on a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> returned from an
+<p>This function may only be invoked on a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> returned from an
 invocation of a remote method, e.g. via <a class="link" href="dbus-glib-DBusGProxy.html#dbus-g-proxy-end-call" title="dbus_g_proxy_end_call ()"><code class="function">dbus_g_proxy_end_call()</code></a>.
 Moreover, you must ensure that the error's domain is <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR:CAPS" title="DBUS_GERROR"><code class="literal">DBUS_GERROR</code></a>,
 and the code is <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR-REMOTE-EXCEPTION:CAPS"><code class="literal">DBUS_GERROR_REMOTE_EXCEPTION</code></a>.</p>
@@ -167,7 +167,7 @@ and the code is <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR-REMO
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>the <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> given from the remote method</p></td>
+<td class="parameter_description"><p>the <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> given from the remote method</p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -181,24 +181,24 @@ and the code is <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR-REMO
 <div class="refsect2">
 <a name="dbus-g-error-domain-register"></a><h3>dbus_g_error_domain_register ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-dbus_g_error_domain_register (<em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Quarks.html#GQuark"><span class="type">GQuark</span></a> domain</code></em>,
+dbus_g_error_domain_register (<em class="parameter"><code><a href="../glib/glib-Quarks.html#GQuark"><span class="type">GQuark</span></a> domain</code></em>,
                               <em class="parameter"><code>const <span class="type">char</span> *default_iface</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> code_enum</code></em>);</pre>
+                              <em class="parameter"><code><a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> code_enum</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">dbus_g_error_domain_register</code> is deprecated and should not be used in newly-written code.</p>
 <p>New code should use GDBus instead. The closest equivalent
- is <a href="https://developer.gnome.org/gio/unstable/gio-GDBusError.html#g-dbus-error-register-error-domain"><code class="function">g_dbus_error_register_error_domain()</code></a>.</p>
+ is <a href="../gio/gio-GDBusError.html#g-dbus-error-register-error-domain"><code class="function">g_dbus_error_register_error_domain()</code></a>.</p>
 </div>
-<p>Register a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> domain and set of codes with D-Bus. When an object
-raises a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> in the domain <em class="parameter"><code>domain</code></em>
+<p>Register a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> domain and set of codes with D-Bus. When an object
+raises a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> in the domain <em class="parameter"><code>domain</code></em>
  from one of its D-Bus methods,
 the D-Bus error name used will be <em class="parameter"><code>default_iface</code></em>
 , followed by a dot,
-followed by the <a href="https://developer.gnome.org/gobject/unstable/gobject-Enumeration-and-Flag-Types.html#GEnumValue.value-nick"><span class="type">GEnumValue.value_nick</span></a> corresponding to the <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError.code"><span class="type">GError.code</span></a>.
+followed by the <a href="../gobject/gobject-Enumeration-and-Flag-Types.html#GEnumValue.value-nick"><span class="type">GEnumValue.value_nick</span></a> corresponding to the <a href="../glib/glib-Error-Reporting.html#GError.code"><span class="type">GError.code</span></a>.
 For D-Bus, it's conventional to use an error name (value_nick) that is
 in CamelCase.</p>
 <p>(For instance, if a D-Bus method <code class="code">com.example.MyObject.GetThings</code>
-can raise a <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> with domain <code class="code">MY_ERROR</code> and code</p>
+can raise a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> with domain <code class="code">MY_ERROR</code> and code</p>
 <code class="code">MY_ERROR_NOT_HAPPY</code>, you could call
 <code class="code">dbus_g_error_domain_register (MY_ERROR, "com.example.MyError",
 MY_TYPE_ERROR)</code>, and set up the value_nick for
@@ -206,7 +206,7 @@ MY_TYPE_ERROR)</code>, and set up the value_nick for
 <p>resulting in the D-Bus error string</p>
 <code class="code">com.example.MyError.NotHappy</code>.)
 <p>If <em class="parameter"><code>default_iface</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the D-Bus interface of the method that failed
+ is <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the D-Bus interface of the method that failed
 will be used.</p>
 <p>(For instance, if the above example had called</p>
 <code class="code">dbus_g_error_domain_register (MY_ERROR, NULL, MY_TYPE_ERROR)</code><p>instead, then the D-Bus error string would be</p>
@@ -222,17 +222,17 @@ will be used.</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>domain</p></td>
-<td class="parameter_description"><p>the <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> domain</p></td>
+<td class="parameter_description"><p>the <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> domain</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>default_iface</p></td>
-<td class="parameter_description"><p>the prefix used for error values, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_description"><p>the prefix used for error values, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>code_enum</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> for a <a href="https://developer.gnome.org/gobject/unstable/gobject-Enumeration-and-Flag-Types.html"><span class="type">GEnum</span></a> of the error codes</p></td>
+<td class="parameter_description"><p>a <a href="../gobject/gobject-Type-Information.html#GType"><span class="type">GType</span></a> for a <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html"><span class="type">GEnum</span></a> of the error codes</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -246,9 +246,9 @@ will be used.</p>
 <a name="DBusGError"></a><h3>enum DBusGError</h3>
 <div class="warning">
 <p><code class="literal">DBusGError</code> is deprecated and should not be used in newly-written code.</p>
-<p>New code should use GDBus and its <a href="https://developer.gnome.org/gio/unstable/gio-GDBusError.html#GDBusError"><span class="type">GDBusError</span></a> enum instead.</p>
+<p>New code should use GDBus and its <a href="../gio/gio-GDBusError.html#GDBusError"><span class="type">GDBusError</span></a> enum instead.</p>
 </div>
-<p>A <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> enumeration for the domain <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR:CAPS" title="DBUS_GERROR"><code class="literal">DBUS_GERROR</code></a>. The values' meanings
+<p>A <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> enumeration for the domain <a class="link" href="dbus-glib-DBusGError.html#DBUS-GERROR:CAPS" title="DBUS_GERROR"><code class="literal">DBUS_GERROR</code></a>. The values' meanings
 can be found by looking at the comments for the corresponding constants
 in dbus-protocol.h.</p>
 <div class="refsect3">
@@ -436,18 +436,18 @@ in dbus-protocol.h.</p>
 </pre>
 <div class="warning">
 <p><code class="literal">DBUS_GERROR</code> is deprecated and should not be used in newly-written code.</p>
-<p>New code should use GDBus and its <a href="https://developer.gnome.org/gio/unstable/gio-GDBusError.html#GDBusError"><span class="type">GDBusError</span></a> enum instead.</p>
+<p>New code should use GDBus and its <a href="../gio/gio-GDBusError.html#GDBusError"><span class="type">GDBusError</span></a> enum instead.</p>
 </div>
 <p>Expands to a function call returning the error domain quark for <a class="link" href="dbus-glib-DBusGError.html#DBusGError" title="enum DBusGError"><span class="type">DBusGError</span></a>,
-for use with <a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>.</p>
+for use with <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>.</p>
 </div>
 </div>
 <div class="refsect1">
 <a name="dbus-glib-DBusGError.see-also"></a><h2>See Also</h2>
-<p><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p>
+<p><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.27</div>
 </body>
 </html>

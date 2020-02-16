@@ -22,10 +22,12 @@
  */
 
 #include <config.h>
-#include "dbus-glib.h"
-#include "dbus-glib-lowlevel.h"
+#include "dbus/dbus-glib.h"
+#include "dbus/dbus-glib-lowlevel.h"
+#include "dbus-gmain/dbus-gmain.h"
 #include "dbus-gtest.h"
 #include "dbus-gutils.h"
+#include "dbus-gvalue.h"
 #include "dbus-gobject.h"
 #include <string.h>
 
@@ -410,4 +412,228 @@ DBusMessage*
 dbus_g_message_get_message (DBusGMessage *gmessage)
 {
   return DBUS_MESSAGE_FROM_G_MESSAGE (gmessage);
+}
+
+/**
+ * dbus_g_connection_open:
+ * @address: address of the connection to open
+ * @error: address where an error can be returned.
+ *
+ * Returns a connection to the given address.
+ *
+ * (Internally, calls dbus_connection_open() then calls
+ * dbus_connection_setup_with_g_main() on the result.)
+ *
+ * Returns: a DBusConnection
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is g_dbus_connection_new_for_address_sync().
+ */
+DBusGConnection*
+dbus_g_connection_open (const gchar  *address,
+                        GError      **error)
+{
+  DBusConnection *connection;
+  DBusError derror;
+
+  g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+  _dbus_g_value_types_init ();
+
+  dbus_error_init (&derror);
+
+  connection = dbus_connection_open (address, &derror);
+  if (connection == NULL)
+    {
+      dbus_set_g_error (error, &derror);
+      dbus_error_free (&derror);
+      return NULL;
+    }
+
+  /* does nothing if it's already been done */
+  dbus_connection_setup_with_g_main (connection, NULL);
+
+  return DBUS_G_CONNECTION_FROM_CONNECTION (connection);
+}
+
+/**
+ * dbus_g_connection_open_private:
+ * @address: address of the connection to open
+ * @context: the #GMainContext or %NULL for default context
+ * @error: address where an error can be returned.
+ *
+ * Returns a private connection to the given address; this
+ * connection does not talk to a bus daemon and thus the caller
+ * must set up any authentication by itself.  If the address
+ * refers to a message bus, the caller must call dbus_bus_register().
+ *
+ * (Internally, calls dbus_connection_open_private() then calls
+ * dbus_connection_setup_with_g_main() on the result.)
+ *
+ * Returns: (transfer full): a #DBusGConnection
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is g_dbus_connection_new_for_address_sync().
+ */
+DBusGConnection *
+dbus_g_connection_open_private (const gchar  *address,
+                                GMainContext *context,
+                                GError      **error)
+{
+  DBusConnection *connection;
+  DBusError derror;
+
+  g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+  _dbus_g_value_types_init ();
+
+  dbus_error_init (&derror);
+
+  connection = dbus_connection_open_private (address, &derror);
+  if (connection == NULL)
+    {
+      dbus_set_g_error (error, &derror);
+      dbus_error_free (&derror);
+      return NULL;
+    }
+
+  dbus_connection_setup_with_g_main (connection, context);
+
+  return DBUS_G_CONNECTION_FROM_CONNECTION (connection);
+}
+
+/**
+ * dbus_g_bus_get:
+ * @type: bus type
+ * @error: address where an error can be returned.
+ *
+ * Returns a connection to the given bus. The connection is a global variable
+ * shared with other callers of this function.
+ *
+ * (Internally, calls dbus_bus_get() then calls
+ * dbus_connection_setup_with_g_main() on the result.)
+ *
+ * Returns: a DBusConnection
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is g_bus_get_sync().
+ */
+DBusGConnection*
+dbus_g_bus_get (DBusBusType     type,
+                GError        **error)
+{
+  DBusConnection *connection;
+  DBusError derror;
+
+  g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+  _dbus_g_value_types_init ();
+
+  dbus_error_init (&derror);
+
+  connection = dbus_bus_get (type, &derror);
+  if (connection == NULL)
+    {
+      dbus_set_g_error (error, &derror);
+      dbus_error_free (&derror);
+      return NULL;
+    }
+
+  /* does nothing if it's already been done */
+  dbus_connection_setup_with_g_main (connection, NULL);
+
+  return DBUS_G_CONNECTION_FROM_CONNECTION (connection);
+}
+
+/**
+ * dbus_g_bus_get_private:
+ * @type: bus type
+ * @context: Mainloop context to attach to
+ * @error: address where an error can be returned.
+ *
+ * Returns a connection to the given bus. The connection will be a private
+ * non-shared connection and should be closed when usage is complete.
+ *
+ * Internally this function calls dbus_bus_get_private() then calls
+ * dbus_connection_setup_with_g_main() on the result; see the documentation
+ * of the former function for more information on private connections.
+ *
+ * Returns: a DBusConnection
+ *
+ * Deprecated: New code should use GDBus instead. The closest equivalent
+ *  is g_bus_get_sync().
+ */
+DBusGConnection*
+dbus_g_bus_get_private (DBusBusType     type,
+                        GMainContext   *context,
+                        GError        **error)
+{
+  DBusConnection *connection;
+  DBusError derror;
+
+  g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+  _dbus_g_value_types_init ();
+
+  dbus_error_init (&derror);
+
+  connection = dbus_bus_get_private (type, &derror);
+  if (connection == NULL)
+    {
+      dbus_set_g_error (error, &derror);
+      dbus_error_free (&derror);
+      return NULL;
+    }
+
+  /* does nothing if it's already been done */
+  dbus_connection_setup_with_g_main (connection, context);
+
+  return DBUS_G_CONNECTION_FROM_CONNECTION (connection);
+}
+
+/**
+ * dbus_connection_setup_with_g_main:
+ * @connection: the connection
+ * @context: the #GMainContext or %NULL for default context
+ *
+ * Sets the watch and timeout functions of a #DBusConnection
+ * to integrate the connection with the GLib main loop.
+ * Pass in %NULL for the #GMainContext unless you're
+ * doing something specialized.
+ *
+ * If called twice for the same context, does nothing the second
+ * time. If called once with context A and once with context B,
+ * context B replaces context A as the context monitoring the
+ * connection.
+ *
+ * Deprecated: New code should use GDBus instead.
+ */
+void
+dbus_connection_setup_with_g_main (DBusConnection  *connection,
+                                   GMainContext    *context)
+{
+  _dbus_g_set_up_connection (connection, context);
+}
+
+/**
+ * dbus_server_setup_with_g_main:
+ * @server: the server
+ * @context: the #GMainContext or %NULL for default
+ *
+ * Sets the watch and timeout functions of a #DBusServer
+ * to integrate the server with the GLib main loop.
+ * In most cases the context argument should be %NULL.
+ *
+ * If called twice for the same context, does nothing the second
+ * time. If called once with context A and once with context B,
+ * context B replaces context A as the context monitoring the
+ * connection.
+ *
+ * Deprecated: New code should use GDBus instead.
+ */
+void
+dbus_server_setup_with_g_main     (DBusServer      *server,
+                                   GMainContext    *context)
+{
+  _dbus_g_set_up_server (server, context);
 }
