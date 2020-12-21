@@ -1,3 +1,31 @@
+dbus-glib (0.110-6) unstable; urgency=medium
+
+  * Switch to debhelper-compat 12
+    - Remove dh_makeshlibs -V override since it is the default now
+  * d/upstream/metadata: Add
+  * Use secure URI in Homepage field.
+  * Standards-Version: 4.5.1 (no changes required)
+  * d/gbp.conf: Rename development git branch to debian/latest
+  * Remove Lintian override for a bug that was fixed in 2011
+  * Add a lintian override for #970275
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 21 Dec 2020 14:03:46 +0000
+
+dbus-glib (0.110-5) unstable; urgency=medium
+
+  * d/salsa-ci.yml: Request standard CI on salsa.debian.org
+  * d/rules: Remove migration path from libdbus-glib-1-2-dbg, which
+    was not in stretch or buster
+  * Standards-Version: 4.4.1 (no changes required)
+  * d/tests/build: Use correct compiler for proposed autopkgtest
+    cross-architecture testing support. Thanks, Steve Langasek
+    (Closes: #946303)
+  * d/tests/build: Remove support for ancient autopkgtest versions.
+    AUTOPKGTEST_TMP is now required to be set, and we do not fall back
+    to the deprecated ADTTMP.
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 09 Dec 2019 17:16:57 +0000
+
 dbus-glib (0.110-4) unstable; urgency=medium
 
   [ Helmut Grohne ]

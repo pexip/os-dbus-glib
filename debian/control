@@ -9,7 +9,7 @@ Uploaders:
  Michael Biebl <biebl@debian.org>,
 Build-Depends:
  dbus (>= 1.8),
- debhelper (>= 11~),
+ debhelper-compat (= 12),
  gtk-doc-tools (>= 1.4),
  libdbus-1-dev (>= 1.8),
  libdbus-glib-1-dev-bin <cross>,
@@ -18,10 +18,10 @@ Build-Depends:
 Build-Depends-Indep:
  libglib2.0-doc,
 Rules-Requires-Root: no
-Standards-Version: 4.3.0
+Standards-Version: 4.5.1
 Vcs-Git: https://salsa.debian.org/debian/dbus-glib.git
 Vcs-Browser: https://salsa.debian.org/debian/dbus-glib
-Homepage: http://www.freedesktop.org/wiki/Software/DBusBindings
+Homepage: https://www.freedesktop.org/wiki/Software/DBusBindings
 
 Package: libdbus-glib-1-2
 Section: oldlibs
