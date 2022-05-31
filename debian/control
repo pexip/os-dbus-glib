@@ -23,7 +23,7 @@ Standards-Version: 4.3.0
 Vcs-Git: https://salsa.debian.org/debian/dbus-glib.git
 Vcs-Browser: https://salsa.debian.org/debian/dbus-glib
 Homepage: http://www.freedesktop.org/wiki/Software/DBusBindings
-XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
+XS-Pexip-Upstream: http://deb.debian.org/debian/ bullseye
 
 Package: libdbus-glib-1-2
 Section: oldlibs
